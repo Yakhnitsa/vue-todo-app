@@ -20,14 +20,14 @@
                     close
                     color="teal"
                     text-color="white"
-                    @click:close="deleteItem"
-            >
+                    @click:close="deleteItem">
                 <slot></slot>
                 <transition name="slide-fade">
-                    <v-btn
+                    <v-btn @click="editItem"
                         v-show="hover" icon x-small class="ml-2">
-                    <v-icon color="grey lighten-1">create</v-icon>
-                </v-btn></transition>
+                        <v-icon color="grey lighten-1">create</v-icon>
+                    </v-btn>
+                </transition>
 
             </v-chip>
     </v-hover>
@@ -36,13 +36,16 @@
 <script>
     export default {
         name: "HoveredChip",
-        props:[],
+        props:['activator-props'],
         data: () => ({
             hover: false,
         }),
         methods:{
             deleteItem(){
-                alert('item deleted');
+                this.$emit('delete-item')
+            },
+            editItem(){
+                this.$emit('edit-item')
             }
         }
     }

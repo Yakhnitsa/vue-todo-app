@@ -9,6 +9,25 @@
                 <todo-item :todo-item="todo"></todo-item>
             </v-list-item>
         </v-list>
+        <v-menu
+                offset-y
+        >
+            <template v-slot:activator="{ attrs, on }">
+                <test-button :prop="{ attrs, on }">
+
+                </test-button>
+            </template>
+
+            <v-list>
+                <v-list-item
+                        v-for="n in 5"
+                        :key="n"
+                        link
+                >
+                    <v-list-item-title >{{n}} some text</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
 
     </v-card>
 
@@ -16,15 +35,16 @@
 
 <script>
     import TodoItem from "@/components/TodoItem";
+    import TestButton from "@/components/TestButton";
     export default {
         name: "TodoBoard",
-        components: {TodoItem},
+        components: {TestButton, TodoItem},
         computed:{
             todoItems(){
                 return [
                     {
                         id:1,
-                        text:'By tickets',
+                        text:'Buy tickets',
                         isDone: false,
                         person:'',
                         location:'Boryspil',
