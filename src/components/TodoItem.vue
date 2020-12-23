@@ -54,9 +54,11 @@
 
                     </v-list-item>
                 </v-card-title>
-                <v-divider class="my-1"></v-divider>
 
-                <v-card-text class="py-0 pl-2">
+
+
+                <v-card-text class="py-0 pl-2" v-show="isActive">
+                    <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
                         <hovered-chip v-show="hasPerson"></hovered-chip>
@@ -87,8 +89,8 @@
             }
         },
         computed:{
-            active(){
-                return true;
+            isActive(){
+                return false;
             },
             hasPlace(){
                 return true;
