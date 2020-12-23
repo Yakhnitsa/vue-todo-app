@@ -17,7 +17,12 @@
                             ></v-checkbox>
                         </v-list-item-action>
                         <v-list-item-content class="pa-1">
-                            <v-list-item-title text="List item title">List item title</v-list-item-title>
+
+                            <v-list-item-title @click="isActive = !isActive">
+                                <v-icon color="blue-grey darken-1">
+                                    {{isActive ? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
+                                </v-icon>
+                                {{todoItem.text}}</v-list-item-title>
                         </v-list-item-content>
 
                         <v-list-item-action class="d-inline-block my-1 mr-2">
@@ -26,20 +31,10 @@
                                     :disabled="!hasPerson">mdi-account-circle</v-icon>
                             <v-icon color="blue-grey darken-1"
                                     dense
-                                    :disabled="!hasPlace">location_on</v-icon>
+                                    :disabled="!hasLocation">location_on</v-icon>
                             <v-icon color="blue-grey darken-1"
                                     dense
                                     :disabled="!hasChildTask">add_task</v-icon>
-
-                            <!--                        <v-btn icon>-->
-                            <!--                            <v-icon color="grey lighten-1">mdi-account-circle</v-icon>-->
-                            <!--                        </v-btn>-->
-                            <!--                        <v-btn icon>-->
-                            <!--                            <v-icon color="grey lighten-1">location_on</v-icon>-->
-                            <!--                        </v-btn>-->
-                            <!--                        <v-btn icon>-->
-                            <!--                            <v-icon color="grey lighten-1">gps_fixed</v-icon>-->
-                            <!--                        </v-btn>-->
                         </v-list-item-action>
 
                         <v-divider
@@ -55,21 +50,19 @@
                     </v-list-item>
                 </v-card-title>
 
-
-
                 <v-card-text class="py-0 pl-2" v-show="isActive">
                     <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
-                        <hovered-chip v-show="hasPerson"></hovered-chip>
+                        <hovered-chip v-show="hasPerson">{{todoItem.person}}</hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">location_on</v-icon>
-                        <hovered-chip v-show="hasPlace"></hovered-chip>
+                        <hovered-chip v-show="hasLocation">{{todoItem.location}}</hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">add_task</v-icon>
-                        <hovered-chip v-show="hasChildTask"></hovered-chip>
+                        <hovered-chip v-show="hasChildTask">{{todoItem.childTask}}</hovered-chip>
                     </v-list-item>
                 </v-card-text>
             </v-card>
@@ -85,21 +78,19 @@
         props:['todo-item'],
         data() {
             return{
-
+                isActive : false,
             }
         },
         computed:{
-            isActive(){
-                return false;
-            },
-            hasPlace(){
-                return true;
+
+            hasLocation(){
+                return this.todoItem.location;
             },
             hasPerson(){
-               return true;
+               return this.todoItem.person;
             },
             hasChildTask(){
-                return true;
+                return this.todoItem.childTask;
             },
             hasParentTask(){
                return true;
@@ -109,13 +100,13 @@
             moveToPerson(){
 
             },
-            moveToPlace(){
+            moveToLocation(){
 
             },
             moveToPatentTask(){
 
             },
-            addPlace(){
+            addLocation(){
 
             },
             addPerson(){
@@ -127,13 +118,13 @@
             deletePerson(){
 
             },
-            deletePlace(){
+            deleteLocation(){
 
             },
             deleteChildTask(){
 
             },
-            editPlace(){
+            editLocation(){
 
             },
             editPerson(){
