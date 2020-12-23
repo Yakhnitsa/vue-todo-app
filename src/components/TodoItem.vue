@@ -63,22 +63,6 @@
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">add_task</v-icon>
                         <hovered-chip v-show="hasChildTask">{{todoItem.childTask}}</hovered-chip>
-                        <v-menu offset-y>
-                            <template v-slot:activator="{ on, attrs }">
-                                <hovered-chip
-                                        :menu-attr="attrs"
-                                        :on="on"
-                                        v-show="hasChildTask">{{todoItem.childTask}}</hovered-chip>
-                            </template>
-                            <v-list>
-                                <v-list-item
-                                        v-for="n in 5"
-                                        :key="n"
-                                >
-                                    <v-list-item-title>some text</v-list-item-title>
-                                </v-list-item>
-                            </v-list>
-                        </v-menu>
                     </v-list-item>
                 </v-card-text>
             </v-card>
@@ -94,7 +78,7 @@
         props:['todo-item'],
         data() {
             return{
-                isActive : false,
+                isActive : true,
             }
         },
         computed:{

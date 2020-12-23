@@ -23,10 +23,23 @@
                     @click:close="deleteItem">
                 <slot></slot>
                 <transition name="slide-fade">
-                    <v-btn @click="editItem"
-                        v-show="hover" icon x-small class="ml-2">
-                        <v-icon color="grey lighten-1">create</v-icon>
-                    </v-btn>
+                    <v-menu offset-y bottom :close-on-click="false">
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    v-show="hover" icon x-small class="ml-2">
+                                <v-icon color="grey lighten-1">create</v-icon>
+                            </v-btn>
+                        </template>
+                        <template v-slot:default>
+                            <v-list>
+                                <v-list-item>...</v-list-item>
+                                <v-list-item>...</v-list-item>
+                                <v-list-item>...</v-list-item>
+                            </v-list>
+                        </template>
+                    </v-menu>
                 </transition>
 
             </v-chip>
@@ -36,7 +49,7 @@
 <script>
     export default {
         name: "HoveredChip",
-        props:['activator-props'],
+        props:['prop'],
         data: () => ({
             hover: false,
         }),
