@@ -56,20 +56,21 @@
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
                         <hovered-chip v-show="hasPerson">
                             <template #default>{{todoItem.person}}</template>
-                            <template #edit-menun>
+                            <template #edit-menu>
                                 <v-autocomplete class="white px-2"
-                                        v-model="todoItem.person"
-                                        :search-input.sync="personSearch"
-                                        :items="people"
-                                        dense
+                                                v-model="todoItem.person"
+                                                :search-input.sync="personSearch"
+                                                :items="people"
+                                                dense
                                 >
                                     <template #no-data>
-                                        <v-icon @click="addPerson()"
+                                        <v-icon @click="addPerson(personSearch)"
                                                 class="ml-3"
                                                 dense
                                                 color="deep-orange darken-4">add_circle_outline</v-icon>
                                         <span class="font-italic font-weight-light ml-2">{{personSearch}}</span>
                                     </template>
+
                                 </v-autocomplete>
                             </template>
 
@@ -104,7 +105,7 @@
                                 </v-list>
                             </template>
 
-                            </hovered-chip>
+                        </hovered-chip>
                     </v-list-item>
                 </v-card-text>
             </v-card>
@@ -114,7 +115,7 @@
 
 <script>
     import HoveredChip from "@/components/HoveredChip";
-    import {mapGetters,mapMutations} from 'vuex';
+    import {mapMutations} from 'vuex';
     export default {
         name: "TodoItem",
         components: {HoveredChip},
@@ -127,20 +128,18 @@
             }
         },
         computed:{
-            ...mapGetters({
-                locations: 'getAllLocations'
-            }),
+
             hasLocation(){
                 return this.todoItem.location;
             },
             hasPerson(){
-               return this.todoItem.person;
+                return this.todoItem.person;
             },
             hasChildTask(){
                 return this.todoItem.childTask;
             },
             hasParentTask(){
-               return true;
+                return true;
             },
             people(){
                 return [
@@ -157,8 +156,7 @@
         },
         methods:{
             ...mapMutations({
-                addPerson: 'addPersonMutation',
-                addLocation: 'addPlaceMutation'
+                addPerson: 'addPersonMutation'
             }),
             moveToPerson(){
 
@@ -172,6 +170,10 @@
             addLocation(){
 
             },
+            // addPerson(){
+            //     console.log(this.personSearch);
+            //
+            // },
             addChildTask(){
 
             },
@@ -184,6 +186,16 @@
             deleteChildTask(){
 
             },
+            editLocation(){
+
+            },
+            savePerson(){
+
+            },
+            editChildTask(){
+
+            }
+
         }
     }
 </script>
