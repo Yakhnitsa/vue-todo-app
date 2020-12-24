@@ -54,23 +54,24 @@
                     <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
-                        <hovered-chip v-show="hasPerson">
+                        <hovered-chip v-show="hasPerson" ref="personChip">
                             <template #default>{{todoItem.person}}</template>
                             <template #edit-menu>
                                 <v-autocomplete class="white px-2"
                                                 v-model="todoItem.person"
                                                 :search-input.sync="personSearch"
                                                 :items="people"
-                                                dense
-                                >
+                                                allow-overflow
+                                                counter="3"
+                                                @change="closePersonMenu()"
+                                                dense>
                                     <template #no-data>
-                                        <v-icon @click="addPerson(personSearch)"
+                                        <v-icon @click="addPerson()"
                                                 class="ml-3"
                                                 dense
                                                 color="deep-orange darken-4">add_circle_outline</v-icon>
                                         <span class="font-italic font-weight-light ml-2">{{personSearch}}</span>
                                     </template>
-
                                 </v-autocomplete>
                             </template>
 
@@ -155,8 +156,8 @@
             }
         },
         methods:{
-            ...mapMutations({
-                addPerson: 'addPersonMutation'
+            ...mapMutations(['addPersonMutation'],{
+
             }),
             moveToPerson(){
 
@@ -170,10 +171,15 @@
             addLocation(){
 
             },
-            // addPerson(){
-            //     console.log(this.personSearch);
-            //
-            // },
+            addPerson(){
+                console.log(this.personSearch);
+                this.addPersonMutation(this.personSearch);
+                this.closePersonMenu();
+                this.todoItem.person = this.personSearch;
+            },
+            closePersonMenu(){
+                this.$refs.personChip.closeMenu();
+            },
             addChildTask(){
 
             },

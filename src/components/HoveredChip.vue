@@ -22,12 +22,12 @@
                     text-color="white"
                     @click:close="deleteItem">
                 <slot></slot>
-                <v-menu offset-y bottom :close-on-content-click="false">
+                <v-menu v-model="showMenu" offset-y bottom :close-on-content-click="false">
                     <template v-slot:activator="{ on, attrs }">
                         <transition name="slide-fade">
                             <v-btn
+                                    @click="showMenu = true"
                                     v-bind="attrs"
-                                    v-on="on"
                                     v-show="hover" icon x-small class="ml-2">
                                 <v-icon color="grey lighten-1">create</v-icon>
                             </v-btn>
@@ -48,6 +48,7 @@
         props:['prop'],
         data: () => ({
             hover: false,
+            showMenu: false
         }),
         methods:{
             deleteItem(){
@@ -55,6 +56,10 @@
             },
             editItem(){
                 this.$emit('edit-item')
+            },
+            closeMenu(){
+                console.log("closeMenu")
+                this.showMenu = false;
             }
         }
     }
