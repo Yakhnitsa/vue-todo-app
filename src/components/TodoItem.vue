@@ -54,15 +54,58 @@
                     <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
-                        <hovered-chip v-show="hasPerson">{{todoItem.person}}</hovered-chip>
+                        <hovered-chip v-show="hasPerson">
+                            <template #default>{{todoItem.person}}</template>
+                            <template #edit-menu>
+                                <v-autocomplete class="white px-2"
+                                        v-model="todoItem.person"
+                                        :search-input.sync="personSearch"
+                                        :items="people"
+                                        dense
+                                >
+                                    <template #no-data>
+                                        <v-icon @click="addPerson()"
+                                                class="ml-3"
+                                                dense
+                                                color="deep-orange darken-4">add_circle_outline</v-icon>
+                                        <span class="font-italic font-weight-light ml-2">{{personSearch}}</span>
+                                    </template>
+
+                                </v-autocomplete>
+                            </template>
+
+                        </hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">location_on</v-icon>
-                        <hovered-chip v-show="hasLocation">{{todoItem.location}}</hovered-chip>
+                        <hovered-chip v-show="hasLocation">
+                            <template #default>
+                                {{todoItem.location}}
+                            </template>
+                            <template #edit-menu>
+                                <v-list>
+                                    <v-list-item>...</v-list-item>
+                                    <v-list-item>...</v-list-item>
+                                    <v-list-item>...</v-list-item>
+                                </v-list>
+                            </template>
+                        </hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">add_task</v-icon>
-                        <hovered-chip v-show="hasChildTask">{{todoItem.childTask}}</hovered-chip>
+                        <hovered-chip v-show="hasChildTask">
+                            <template #default>
+                                {{todoItem.childTask}}
+                            </template>
+                            <template #edit-menu>
+                                <v-list>
+                                    <v-list-item>...</v-list-item>
+                                    <v-list-item>...</v-list-item>
+                                    <v-list-item>...</v-list-item>
+                                </v-list>
+                            </template>
+
+                            </hovered-chip>
                     </v-list-item>
                 </v-card-text>
             </v-card>
@@ -79,6 +122,8 @@
         data() {
             return{
                 isActive : true,
+                personSearch:'',
+                placeSearch:'',
             }
         },
         computed:{
@@ -94,6 +139,18 @@
             },
             hasParentTask(){
                return true;
+            },
+            people(){
+                return [
+                    "Mom",
+                    "Dad",
+                    "Ann",
+                    "Boss",
+                    "Prostitute"
+                ]
+            },
+            places(){
+                return []
             }
         },
         methods:{
@@ -110,6 +167,7 @@
 
             },
             addPerson(){
+                console.log(this.personSearch);
 
             },
             addChildTask(){
@@ -127,7 +185,7 @@
             editLocation(){
 
             },
-            editPerson(){
+            savePerson(){
 
             },
             editChildTask(){
