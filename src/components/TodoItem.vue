@@ -54,26 +54,31 @@
                     <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
-                        <hovered-chip v-show="hasPerson" ref="personChip">
+                        <hovered-chip v-show="hasPerson" ref="personChip"
+                                      :input-item.sync="todoItem.person"
+                                      :search-items="people"
+                                      @addNewRecord="addPerson"
+                                      @delete-item="deletePerson"
+                        >
                             <template #default>{{todoItem.person}}</template>
-                            <template #edit-menu>
-                                <v-autocomplete class="white px-2"
-                                                v-model="todoItem.person"
-                                                :search-input.sync="personSearch"
-                                                :items="people"
-                                                allow-overflow
-                                                counter="3"
-                                                @change="closePersonMenu()"
-                                                dense>
-                                    <template #no-data>
-                                        <v-icon @click="addPerson()"
-                                                class="ml-3"
-                                                dense
-                                                color="deep-orange darken-4">add_circle_outline</v-icon>
-                                        <span class="font-italic font-weight-light ml-2">{{personSearch}}</span>
-                                    </template>
-                                </v-autocomplete>
-                            </template>
+<!--                            <template #edit-menu>-->
+<!--                                <v-autocomplete class="white px-2"-->
+<!--                                                v-model="todoItem.person"-->
+<!--                                                :search-input.sync="personSearch"-->
+<!--                                                :items="people"-->
+<!--                                                allow-overflow-->
+<!--                                                counter="3"-->
+<!--                                                @change="closePersonMenu()"-->
+<!--                                                dense>-->
+<!--                                    <template #no-data>-->
+<!--                                        <v-icon @click="addPerson()"-->
+<!--                                                class="ml-3"-->
+<!--                                                dense-->
+<!--                                                color="deep-orange darken-4">add_circle_outline</v-icon>-->
+<!--                                        <span class="font-italic font-weight-light ml-2">{{personSearch}}</span>-->
+<!--                                    </template>-->
+<!--                                </v-autocomplete>-->
+<!--                            </template>-->
 
                         </hovered-chip>
                     </v-list-item>
@@ -124,8 +129,6 @@
         data() {
             return{
                 isActive : true,
-                personSearch:'',
-                placeSearch:'',
             }
         },
         computed:{
@@ -171,20 +174,20 @@
             addLocation(){
 
             },
-            addPerson(){
-                console.log(this.personSearch);
-                this.addPersonMutation(this.personSearch);
-                this.closePersonMenu();
-                this.todoItem.person = this.personSearch;
+            addPerson(val){
+                this.addPersonMutation(val);
+                this.$set(this.todoItem,'person',val);
+                console.log(this.hasPerson);
+                console.log(this.todoItem.person);
             },
-            closePersonMenu(){
-                this.$refs.personChip.closeMenu();
-            },
+
             addChildTask(){
 
             },
             deletePerson(){
-
+                this.$set(this.todoItem, 'person', null);
+                console.log(this.hasPerson);
+                console.log(this.todoItem.person);
             },
             deleteLocation(){
 
@@ -202,6 +205,11 @@
 
             }
 
+        },
+        created(){
+            // this.$set(this.todoItem, 'person', 'undefined');
+            // this.$set(this.todoItem, 'location', '????');
+            // this.$set(this.todoItem, 'isDone', "....");
         }
     }
 </script>
