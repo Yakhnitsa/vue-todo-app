@@ -1,5 +1,5 @@
 export default{
-    replaceIfExist(array, item, prop = 'id'){
+    addOrReplace(array, item, prop = 'id'){
         let index = array.findIndex(i => i[prop] === item[prop]);
         if(index !== -1){
             array.splice(index,1,item);

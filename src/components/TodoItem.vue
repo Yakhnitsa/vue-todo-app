@@ -121,7 +121,7 @@
 
 <script>
     import HoveredChip from "@/components/HoveredChip";
-    import {mapMutations} from 'vuex';
+    import {mapMutations, mapActions, mapGetters} from 'vuex';
     export default {
         name: "TodoItem",
         components: {HoveredChip},
@@ -132,7 +132,9 @@
             }
         },
         computed:{
-
+            ...mapGetters({
+                people: 'getAllPeople'
+            }),
             hasLocation(){
                 return this.todoItem.location;
             },
@@ -145,23 +147,24 @@
             hasParentTask(){
                 return true;
             },
-            people(){
-                return [
-                    "Mom",
-                    "Dad",
-                    "Ann",
-                    "Boss",
-                    "Prostitute"
-                ]
-            },
+            // people(){
+            //     return [
+            //         "Mom",
+            //         "Dad",
+            //         "Ann",
+            //         "Boss",
+            //         "Prostitute"
+            //     ]
+            // },
             places(){
                 return []
             }
         },
         methods:{
-            ...mapMutations(['addPersonMutation','add'],{
+            ...mapMutations(['addPersonMutation'],{
 
             }),
+            ...mapActions(['saveTodoAction','savePersonAction']),
             moveToPerson(){
 
             },
@@ -174,11 +177,8 @@
             addLocation(){
 
             },
-            addPerson(val){
-                this.addPersonMutation(val);
-                this.$set(this.todoItem,'person',val);
-                console.log(this.hasPerson);
-                console.log(this.todoItem.person);
+            addPerson(person){
+                this.todoItem.person = this.savePersonAction(person);
             },
 
             addChildTask(){
@@ -186,7 +186,6 @@
             },
             deletePerson(){
                 this.todoItem.person = null;
-                this.updateTodo();
             },
             deleteLocation(){
 
@@ -203,12 +202,18 @@
             editChildTask(){
 
             },
-            updateTodo(){
-                this.$emit('update-todo');
-            }
 
         },
+        watch:{
+            todoItem:{
+                deep: true,
+                handler(){
+                    this.saveTodoAction(this.todoItem);
+                }
+            }
+        },
         created(){
+
         }
     }
 </script>

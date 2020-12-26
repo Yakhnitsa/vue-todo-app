@@ -36,60 +36,22 @@
 <script>
     import TodoItem from "@/components/TodoItem";
     import TestButton from "@/components/TestButton";
+    import {mapGetters,mapActions} from 'vuex';
+
     export default {
         name: "TodoBoard",
         components: {TestButton, TodoItem},
         computed:{
-            todoItems(){
-                return [
-                    {
-                        id:1,
-                        text:'Buy tickets',
-                        isDone: false,
-                        person:'',
-                        location:'Boryspil',
-                        childTask:null,
-                    },
-                    {
-                        id:2,
-                        text:'Pack all my staff',
-                        isDone: false,
-                        person:'Wife',
-                        location:'Home',
-                        childTask:null,
-                    },
-                    {
-                        id:3,
-                        text:'Buy presents for nephews',
-                        isDone: false,
-                        person:'',
-                        location:'Lavina mall',
-                        childTask:null,
-                    },
-                    {
-                        id:4,
-                        text:'Spell list for a vacation',
-                        isDone: false,
-                        person:'Boss',
-                        location:'Work',
-                        childTask:null,
-                    },
-                    {
-                        id:5,
-                        text:'Fix water leaks in bathroom',
-                        isDone: false,
-                        person:'',
-                        location:'Home',
-                        childTask:null,
-                    },
-                ]
-            }
+            ...mapGetters({
+                todoItems: 'getAllTodos'
+            }),
         },
         methods:{
-
+            ...mapActions(['fetchAllTodosAction','fetchPeopleAction'])
         },
         created(){
-
+            this.fetchAllTodosAction();
+            this.fetchPeopleAction();
         }
     }
 </script>

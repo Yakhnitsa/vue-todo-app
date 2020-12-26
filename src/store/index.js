@@ -1,51 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import api from '../api/localStorageApi';
+
+import {addOrReplace} from '../plugins/arrayUtils';
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
         todos: [
-            {
-                id:1,
-                text:'Buy tickets',
-                isDone: false,
-                person:'',
-                location:'Boryspil',
-                childTask:null,
-            },
-            {
-                id:2,
-                text:'Pack all my staff',
-                isDone: false,
-                person:'Wife',
-                location:'Home',
-                childTask:null,
-            },
-            {
-                id:3,
-                text:'Buy presents for nephews',
-                isDone: false,
-                person:'',
-                location:'Lavina mall',
-                childTask:null,
-            },
-            {
-                id:4,
-                text:'Spell list for a vacation',
-                isDone: false,
-                person:'Boss',
-                location:'Work',
-                childTask:null,
-            },
-            {
-                id:5,
-                text:'Fix water leaks in bathroom',
-                isDone: false,
-                person:'',
-                location:'Home',
-                childTask:null,
-            },
+
         ],
         locations:[],
         people:[],
@@ -69,8 +34,17 @@ export default new Vuex.Store({
         //TODO todo group by person, by place
     },
     mutations: {
+        setTodos(state,todos){
+            state.todos = todos;
+        },
+        setLocationsMutation(state,locations){
+            state.locations = locations;
+        },
+        setPeopleMutation(state,people){
+            state.people = people;
+        },
         addPersonMutation(state,person){
-            state.people.push(person);
+            addOrReplace(state.people, person);
         },
         addLocationMutation(state,place){
             state.locations.push(place);
@@ -81,12 +55,30 @@ export default new Vuex.Store({
             console.log(child);
         },
         addTodoMutation(state,todo){
-            //TODO make reactive before add
-            this.todos.push(todo);
+            addOrReplace(state.todos,todo);
         },
         addTestItem(state,item){
             state.testItems.push(item);
         }
-
+    },
+    actions:{
+        fetchAllTodosAction({commit}){
+            const todos = api.fetchTodos();
+            commit('setTodos',todos);
+        },
+        saveTodoAction({commit},todo){
+            const savedTodo = api.addTodo(todo);
+            commit('addTodoMutation',savedTodo);
+            return savedTodo;
+        },
+        fetchPeopleAction({commit}){
+            const people = api.fetchPeople();
+            commit('setPeopleMutation',people);
+        },
+        savePersonAction({commit},person){
+            const newPerson = api.addPerson(person);
+            commit('addPersonMutation',newPerson);
+            return newPerson;
+        }
     }
 });
