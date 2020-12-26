@@ -22,6 +22,9 @@ export default {
         const index = todos.findIndex(item => item.id === todo.id);
         if(index !== -1) todos.splice(index,1);
     },
+    fetchTodos(){
+        return todos;
+    },
     addPeople(person){
         //TODO Проверить на дубликат
         people.push(person);
