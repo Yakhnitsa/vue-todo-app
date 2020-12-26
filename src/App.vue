@@ -2,20 +2,7 @@
     <v-app>
         <v-container class="teal lighten-5" fluid>
             <v-row no-gutters>
-                <v-col
-                        v-for="n in 3"
-                        :key="n"
-                        cols="12"
-                        sm="3"
-                >
-                    <v-card
-                            class="pa-5"
-                            outlined
-                            tile
-                    >
-                        One of three columns
-                    </v-card>
-                </v-col>
+                <test-component></test-component>
             </v-row>
             <v-row>
                 <todo-board></todo-board>
@@ -29,10 +16,12 @@
 // import HelloWorld from './components/HelloWorld';
 
 import TodoBoard from "@/components/TodoBoard";
+import TestComponent from "./components/testComponent";
 export default {
   name: 'App',
 
   components: {
+      TestComponent,
       TodoBoard
     // HelloWorld,
   },

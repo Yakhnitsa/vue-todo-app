@@ -84,6 +84,12 @@
                     },
                 ]
             }
+        },
+        methods:{
+
+        },
+        created(){
+
         }
     }
 </script>

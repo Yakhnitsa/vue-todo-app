@@ -159,7 +159,7 @@
             }
         },
         methods:{
-            ...mapMutations(['addPersonMutation'],{
+            ...mapMutations(['addPersonMutation','add'],{
 
             }),
             moveToPerson(){
@@ -185,9 +185,8 @@
 
             },
             deletePerson(){
-                this.$set(this.todoItem, 'person', null);
-                console.log(this.hasPerson);
-                console.log(this.todoItem.person);
+                this.todoItem.person = null;
+                this.updateTodo();
             },
             deleteLocation(){
 
@@ -203,13 +202,13 @@
             },
             editChildTask(){
 
+            },
+            updateTodo(){
+                this.$emit('update-todo');
             }
 
         },
         created(){
-            // this.$set(this.todoItem, 'person', 'undefined');
-            // this.$set(this.todoItem, 'location', '????');
-            // this.$set(this.todoItem, 'isDone', "....");
         }
     }
 </script>
