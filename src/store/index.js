@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 import api from '../api/localStorageApi';
 
-import {addOrReplace} from '../plugins/arrayUtils';
+import arrayUtil from '../plugins/arrayUtils';
 
 Vue.use(Vuex)
 
@@ -44,7 +44,7 @@ export default new Vuex.Store({
             state.people = people;
         },
         addPersonMutation(state,person){
-            addOrReplace(state.people, person);
+            arrayUtil.addOrReplace(state.people, person);
         },
         addLocationMutation(state,place){
             state.locations.push(place);
@@ -55,7 +55,7 @@ export default new Vuex.Store({
             console.log(child);
         },
         addTodoMutation(state,todo){
-            addOrReplace(state.todos,todo);
+            arrayUtil.addOrReplace(state.todos,todo);
         },
         addTestItem(state,item){
             state.testItems.push(item);
@@ -76,9 +76,9 @@ export default new Vuex.Store({
             commit('setPeopleMutation',people);
         },
         savePersonAction({commit},person){
-            const newPerson = api.addPerson(person);
-            commit('addPersonMutation',newPerson);
-            return newPerson;
+            const savedPerson = api.savePerson(person);
+            commit('addPersonMutation',savedPerson);
+            return savedPerson;
         }
     }
 });

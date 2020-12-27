@@ -24,6 +24,8 @@
                                             v-model="model"
                                             :search-input.sync="search"
                                             :items="searchItems"
+                                            return-object
+                                            item-text="name"
                                             allow-overflow
                                             @change="closeMenu()"
                                             dense>

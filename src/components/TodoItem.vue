@@ -60,7 +60,7 @@
                                       @addNewRecord="addPerson"
                                       @delete-item="deletePerson"
                         >
-                            <template #default>{{todoItem.person}}</template>
+                            <template #default>{{todoItem.person.name}}</template>
 <!--                            <template #edit-menu>-->
 <!--                                <v-autocomplete class="white px-2"-->
 <!--                                                v-model="todoItem.person"-->
@@ -177,8 +177,11 @@
             addLocation(){
 
             },
-            addPerson(person){
-                this.todoItem.person = this.savePersonAction(person);
+            addPerson(personName){
+                let person = {name:personName}
+                person = this.$store.dispatch('savePersonAction',person);
+                console.log(person);
+                this.todoItem.person = person;
             },
 
             addChildTask(){

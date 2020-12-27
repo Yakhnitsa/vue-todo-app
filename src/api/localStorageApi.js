@@ -1,7 +1,7 @@
 let todoId = 4;
 let personId = 5;
 
-import {addOrReplace, deleteIfExist } from '../plugins/arrayUtils';
+import arrayUtil from '../plugins/arrayUtils';
 
 const todos = [
     {
@@ -60,7 +60,7 @@ const places = [];
 export default {
     addTodo(todo){
         if(todo.id >= 0){
-            addOrReplace(todos,todo);
+            arrayUtil.addOrReplace(todos,todo);
         }
         else{
             todo.id = ++todoId;
@@ -76,16 +76,16 @@ export default {
         return todos;
     },
 
-    addPerson(person){
-        if(person.id <= 0){
+    savePerson(person){
+        if(!person.id || person.id <= 0){
             person.id = ++personId;
         }
-        addOrReplace(people,person);
+        arrayUtil.addOrReplace(people,person);
         return person;
     },
 
     deletePerson(person){
-        deleteIfExist(people,person);
+        arrayUtil.deleteIfExist(people,person);
     },
 
     fetchPeople(){
