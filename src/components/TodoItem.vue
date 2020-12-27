@@ -179,9 +179,10 @@
             },
             addPerson(personName){
                 let person = {name:personName}
-                person = this.$store.dispatch('savePersonAction',person);
-                console.log(person);
-                this.todoItem.person = person;
+                this.savePersonAction(person)
+                    .then(res => {
+                        this.todoItem.person = res
+                    });
             },
 
             addChildTask(){
