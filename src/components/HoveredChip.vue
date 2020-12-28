@@ -22,26 +22,12 @@
                     </template>
                     <template v-slot:default>
                         <slot name="edit-menu">
-                            <v-autocomplete class="white px-2"
-                                            :menu-props="{
-                                                maxHeight: 150,
-                                                offsetY: true,
-                                                offsetOverflow: true,}"
-                                            v-model="model"
-                                            :search-input.sync="search"
-                                            :items="searchItems"
-                                            return-object
-                                            item-text="name"
-                                            @change="closeMenu()"
-                                            dense>
-                                <template #no-data>
-                                    <v-icon @click="addRecord()"
-                                            class="ml-3"
-                                            dense
-                                            color="deep-orange darken-4">add_circle_outline</v-icon>
-                                    <span class="font-italic font-weight-light ml-2">{{search}}</span>
-                                </template>
-                            </v-autocomplete>
+                            <input-with-autocomplete
+                                    :search-items="searchItems"
+                                    @close-menu="closeMenu"
+                                    @add-new-record="addRecord"
+                                    :input-model.sync="model"
+                            ></input-with-autocomplete>
                         </slot>
                     </template>
                 </v-menu>
@@ -61,23 +47,12 @@
                     </template>
                     <template v-slot:default>
                         <slot name="edit-menu">
-                            <v-autocomplete class="white px-2"
-                                            v-model="model"
-                                            :search-input.sync="search"
-                                            :items="searchItems"
-                                            return-object
-                                            item-text="name"
-                                            allow-overflow
-                                            @change="closeMenu()"
-                                            dense>
-                                <template #no-data>
-                                    <v-icon @click="addRecord()"
-                                            class="ml-3"
-                                            dense
-                                            color="deep-orange darken-4">add_circle_outline</v-icon>
-                                    <span class="font-italic font-weight-light ml-2">{{search}}</span>
-                                </template>
-                            </v-autocomplete>
+                            <input-with-autocomplete
+                                    :search-items="searchItems"
+                                    @close-menu="closeMenu"
+                                    @add-new-record="addRecord"
+                                    :input-model.sync="model"
+                            ></input-with-autocomplete>
                         </slot>
                     </template>
                 </v-menu>
@@ -86,8 +61,10 @@
 </template>
 
 <script>
+    import InputWithAutocomplete from "@/components/InputWithAutocomplete";
     export default {
         name: "HoveredChip",
+        components: {InputWithAutocomplete},
         props:['searchItems','input-item'],
         data: () => ({
             hover: false,
@@ -117,8 +94,8 @@
             closeMenu(){
                 this.showMenu = false;
             },
-            addRecord(){
-                this.$emit('addNewRecord',this.search);
+            addRecord(val){
+                this.$emit('addNewRecord',val);
                 this.closeMenu();
             }
         }

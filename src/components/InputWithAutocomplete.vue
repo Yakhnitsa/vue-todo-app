@@ -21,7 +21,20 @@
 <script>
     export default {
         name: "InputWithAutocomplete",
-        props:['search-items','menu-props','input-model'],
+        props:{
+            searchItems:Array,
+            inputModel: Object,
+            menuProps: {
+                type: Object,
+                default:() =>(
+                    {
+                        maxHeight: 150,
+                        offsetY: true,
+                        offsetOverflow: true,
+                    }
+                )
+            },
+        },
         data: () =>({
             search:'',
 
@@ -29,10 +42,10 @@
         computed:{
             model:{
                 get(){
-                    return this.inputMode;
+                    return this.inputModel;
                 },
                 set(val){
-                    this.$emit('change-input',val);
+                    this.$emit('update:input-model',val);
                 }
             }
         },

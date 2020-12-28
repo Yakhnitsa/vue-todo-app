@@ -36,7 +36,6 @@
         methods:{
             ...mapActions(['fetchAllTodosAction','fetchPeopleAction','fetchLocationsAction']),
             setTaskActive(todo){
-                console.log(todo);
                 this.activeTask = todo;
             }
         },
