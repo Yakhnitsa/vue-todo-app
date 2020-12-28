@@ -1,12 +1,14 @@
 <template>
     <v-hover v-model="hover">
-            <v-chip class="mx-2"
+            <v-chip v-if="hasData" class="mx-2"
                     small
                     close
                     color="teal"
                     text-color="white"
                     @click:close="deleteItem">
-                <slot></slot>
+                <slot>
+                    <span v-if="hasData">{{inputItem.name}}</span>
+                </slot>
                 <v-menu v-model="showMenu" offset-y bottom :close-on-content-click="false">
                     <template v-slot:activator="{ on, attrs }">
                         <transition name="slide-fade">
@@ -42,6 +44,41 @@
                 </v-menu>
 
             </v-chip>
+            <span v-else>
+                <v-menu v-model="showMenu" offset-y bottom :close-on-content-click="false">
+                    <template v-slot:activator="{ on, attrs }">
+                        <transition name="slide-fade">
+                            <v-btn
+                                    @click="openMenu()"
+                                    v-bind="attrs"
+                                    icon x-small class="ml-2">
+                                <v-icon color="deep-orange darken-4">add_circle_outline</v-icon>
+                            </v-btn>
+                        </transition>
+                    </template>
+                    <template v-slot:default>
+                        <slot name="edit-menu">
+                            <v-autocomplete class="white px-2"
+                                            v-model="model"
+                                            :search-input.sync="search"
+                                            :items="searchItems"
+                                            return-object
+                                            item-text="name"
+                                            allow-overflow
+                                            @change="closeMenu()"
+                                            dense>
+                                <template #no-data>
+                                    <v-icon @click="addRecord()"
+                                            class="ml-3"
+                                            dense
+                                            color="deep-orange darken-4">add_circle_outline</v-icon>
+                                    <span class="font-italic font-weight-light ml-2">{{search}}</span>
+                                </template>
+                            </v-autocomplete>
+                        </slot>
+                    </template>
+                </v-menu>
+                add</span>
     </v-hover>
 </template>
 
@@ -62,6 +99,9 @@
                 set(val){
                   this.$emit('update:inputItem',val);
                 }
+            },
+            hasData(){
+                return this.inputItem;
             }
         },
         methods:{

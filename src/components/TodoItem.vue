@@ -18,7 +18,7 @@
                         </v-list-item-action>
                         <v-list-item-content class="pa-1">
 
-                            <v-list-item-title @click="isActive = !isActive">
+                            <v-list-item-title @click="activateMenu">
                                 <v-icon color="blue-grey darken-1">
                                     {{isActive ? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
                                 </v-icon>
@@ -54,32 +54,12 @@
                     <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
-                        <hovered-chip v-show="hasPerson" ref="personChip"
+                        <hovered-chip ref="personChip"
                                       :input-item.sync="todoItem.person"
                                       :search-items="people"
                                       @addNewRecord="addPerson"
-                                      @delete-item="deletePerson"
-                        >
-                            <template #default>{{todoItem.person.name}}</template>
-<!--                            <template #edit-menu>-->
-<!--                                <v-autocomplete class="white px-2"-->
-<!--                                                v-model="todoItem.person"-->
-<!--                                                :search-input.sync="personSearch"-->
-<!--                                                :items="people"-->
-<!--                                                allow-overflow-->
-<!--                                                counter="3"-->
-<!--                                                @change="closePersonMenu()"-->
-<!--                                                dense>-->
-<!--                                    <template #no-data>-->
-<!--                                        <v-icon @click="addPerson()"-->
-<!--                                                class="ml-3"-->
-<!--                                                dense-->
-<!--                                                color="deep-orange darken-4">add_circle_outline</v-icon>-->
-<!--                                        <span class="font-italic font-weight-light ml-2">{{personSearch}}</span>-->
-<!--                                    </template>-->
-<!--                                </v-autocomplete>-->
-<!--                            </template>-->
-
+                                      @delete-item="deletePerson">
+<!--                            <template #default>{{todoItem.person.name}}</template>-->
                         </hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
@@ -125,10 +105,9 @@
     export default {
         name: "TodoItem",
         components: {HoveredChip},
-        props:['todo-item'],
+        props:['todo-item','is-active'],
         data() {
             return{
-                isActive : true,
             }
         },
         computed:{
@@ -165,6 +144,10 @@
 
             }),
             ...mapActions(['saveTodoAction','savePersonAction']),
+            activateMenu(){
+                this.isActive ? this.$emit('set-active', null)
+                    : this.$emit('set-active',this.todoItem);
+            },
             moveToPerson(){
 
             },
