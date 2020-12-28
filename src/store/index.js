@@ -73,8 +73,8 @@ export default new Vuex.Store({
             const people = api.fetchPeople();
             commit('setPeopleMutation',people);
         },
-        savePersonAction({commit},person){
-            const savedPerson = api.savePerson(person);
+        async savePersonAction({commit},person){
+            const savedPerson = await api.savePerson(person);
             commit('addPersonMutation',savedPerson);
             return savedPerson;
         },

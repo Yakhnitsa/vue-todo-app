@@ -1,5 +1,6 @@
 <template>
     <v-hover class="mt-1">
+
         <template v-slot:default="{ hover }">
             <v-card
                     :elevation="hover ? 6 : 1"
@@ -8,6 +9,10 @@
                     outlined
                     tile
             >
+                <div v-if='loadingAwait' class="loading">
+                    ...loading...
+                </div>
+
                 <v-card-title class="pa-0">
                     <v-list-item class="px-0">
                         <v-list-item-action class="my-0 mr-3">
@@ -68,11 +73,7 @@
                                 :input-item.sync="todoItem.location"
                                 :search-items="locations"
                                 @addNewRecord="addNewLocation"
-                                @delete-item="deleteLocation"
-                        >
-<!--                            <template #default>-->
-<!--                                {{todoItem.location}}-->
-<!--                            </template>-->
+                                @delete-item="deleteLocation">
                         </hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
@@ -106,6 +107,7 @@
         props:['todo-item','is-active'],
         data() {
             return{
+                loadingAwait:false,
             }
         },
         computed:{
@@ -146,6 +148,7 @@
             },
             addNewLocation(locationName){
                 let location = {name:locationName}
+
                 this.saveLocationAction(location)
                     .then(res => {
                         this.todoItem.location = res
@@ -153,9 +156,11 @@
             },
             addPerson(personName){
                 let person = {name:personName}
+                this.loadingAwait= true;
                 this.savePersonAction(person)
                     .then(res => {
                         this.todoItem.person = res
+                        this.loadingAwait = false;
                     });
             },
 
@@ -199,6 +204,15 @@
 <style scoped>
     .v-list-item {
         min-height: 30px;
+    }
+    .loading {
+        position: absolute;
+        z-index:    1000;
+        top:        0;
+        left:       0;
+        height:     100%;
+        width:      100%;
+        background: rgba( 205, 205, 205, 0.5 );
     }
 
 </style>

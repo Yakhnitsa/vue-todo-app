@@ -65,6 +65,12 @@ const locations = [
     {id: 5, name: 'Hayvoron'},
     ];
 
+const sleep = (ms,obj) =>{
+    return new Promise(resolve =>{
+        setTimeout(() => resolve(obj),ms);
+    })
+}
+
 export default {
     addTodo(todo){
         if(todo.id >= 0){
@@ -89,7 +95,7 @@ export default {
             person.id = ++personId;
         }
         addOrReplace(people,person);
-        return person;
+        return sleep(500,person);
     },
 
     deletePerson(person){
@@ -109,6 +115,7 @@ export default {
             location.id = ++locationId;
         }
         addOrReplace(people,location);
+
         return location;
     }
 

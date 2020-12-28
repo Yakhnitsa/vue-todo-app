@@ -31,7 +31,6 @@
                         </slot>
                     </template>
                 </v-menu>
-
             </v-chip>
             <span v-else>
                 <v-menu v-model="showMenu" offset-y bottom :close-on-content-click="false">
@@ -56,7 +55,8 @@
                         </slot>
                     </template>
                 </v-menu>
-                add</span>
+                add
+            </span>
     </v-hover>
 </template>
 
