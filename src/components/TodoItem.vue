@@ -64,17 +64,15 @@
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">location_on</v-icon>
-                        <hovered-chip v-show="hasLocation">
-                            <template #default>
-                                {{todoItem.location}}
-                            </template>
-                            <template #edit-menu>
-                                <v-list>
-                                    <v-list-item>...</v-list-item>
-                                    <v-list-item>...</v-list-item>
-                                    <v-list-item>...</v-list-item>
-                                </v-list>
-                            </template>
+                        <hovered-chip
+                                :input-item.sync="todoItem.location"
+                                :search-items="locations"
+                                @addNewRecord="addNewLocation"
+                                @delete-item="deleteLocation"
+                        >
+<!--                            <template #default>-->
+<!--                                {{todoItem.location}}-->
+<!--                            </template>-->
                         </hovered-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
@@ -112,7 +110,8 @@
         },
         computed:{
             ...mapGetters({
-                people: 'getAllPeople'
+                people: 'getAllPeople',
+                locations: 'getAllLocations'
             }),
             hasLocation(){
                 return this.todoItem.location;
@@ -126,24 +125,12 @@
             hasParentTask(){
                 return true;
             },
-            // people(){
-            //     return [
-            //         "Mom",
-            //         "Dad",
-            //         "Ann",
-            //         "Boss",
-            //         "Prostitute"
-            //     ]
-            // },
-            places(){
-                return []
-            }
         },
         methods:{
             ...mapMutations(['addPersonMutation'],{
 
             }),
-            ...mapActions(['saveTodoAction','savePersonAction']),
+            ...mapActions(['saveTodoAction','savePersonAction','saveLocationAction']),
             activateMenu(){
                 this.isActive ? this.$emit('set-active', null)
                     : this.$emit('set-active',this.todoItem);
@@ -157,8 +144,12 @@
             moveToPatentTask(){
 
             },
-            addLocation(){
-
+            addNewLocation(locationName){
+                let location = {name:locationName}
+                this.saveLocationAction(location)
+                    .then(res => {
+                        this.todoItem.location = res
+                    });
             },
             addPerson(personName){
                 let person = {name:personName}
@@ -175,7 +166,7 @@
                 this.todoItem.person = null;
             },
             deleteLocation(){
-
+                this.todoItem.location = null;
             },
             deleteChildTask(){
 

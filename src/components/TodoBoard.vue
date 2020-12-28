@@ -34,7 +34,7 @@
             }),
         },
         methods:{
-            ...mapActions(['fetchAllTodosAction','fetchPeopleAction']),
+            ...mapActions(['fetchAllTodosAction','fetchPeopleAction','fetchLocationsAction']),
             setTaskActive(todo){
                 console.log(todo);
                 this.activeTask = todo;
@@ -43,6 +43,7 @@
         created(){
             this.fetchAllTodosAction();
             this.fetchPeopleAction();
+            this.fetchLocationsAction();
         }
     }
 </script>

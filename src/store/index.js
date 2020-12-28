@@ -18,8 +18,6 @@ export default new Vuex.Store({
     },
     getters:{
         getAllTodos(state){
-            //make reactive for test code and then delete:
-
             return state.todos;
         },
         getAllLocations: state => {
@@ -47,7 +45,7 @@ export default new Vuex.Store({
             addOrReplace(state.people, person);
         },
         addLocationMutation(state,place){
-            state.locations.push(place);
+            addOrReplace(state.locations, place);
         },
         addChildTaskMutation(state,{parent,child}){
             console.log(state);
@@ -79,6 +77,15 @@ export default new Vuex.Store({
             const savedPerson = api.savePerson(person);
             commit('addPersonMutation',savedPerson);
             return savedPerson;
+        },
+        fetchLocationsAction({commit}){
+            const locations = api.fetchLocations();
+            commit('setLocationsMutation',locations);
+        },
+        saveLocationAction({commit}, location){
+            const savedLocation = api.saveLocation(location);
+            commit('addLocationMutation', savedLocation);
+            return savedLocation;
         }
     }
 });

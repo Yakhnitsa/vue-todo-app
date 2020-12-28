@@ -1,5 +1,6 @@
 let todoId = 4;
 let personId = 5;
+let locationId = 5;
 
 import {addOrReplace,deleteIfExist} from '../plugins/arrayUtils';
 
@@ -55,7 +56,14 @@ const people = [
     {id: 5, name: 'Plumber'},
 ];
 
-const places = [];
+const locations = [
+    {id: 0, name: 'Home'},
+    {id: 1, name: 'Work'},
+    {id: 2, name: 'Gas station'},
+    {id: 3, name: 'Supermarket'},
+    {id: 4, name: 'Lavina mall'},
+    {id: 5, name: 'Hayvoron'},
+    ];
 
 export default {
     addTodo(todo){
@@ -92,9 +100,16 @@ export default {
        return people;
     },
 
-    addPlace(place){
-        // TODO проверить на дубликат
-        places.push(place);
+    fetchLocations(){
+        return locations;
+    },
+
+    saveLocation(location){
+        if(!location.id || location.id <= 0){
+            location.id = ++locationId;
+        }
+        addOrReplace(people,location);
+        return location;
     }
 
 }

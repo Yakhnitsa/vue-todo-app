@@ -23,12 +23,15 @@
                     <template v-slot:default>
                         <slot name="edit-menu">
                             <v-autocomplete class="white px-2"
+                                            :menu-props="{
+                                                maxHeight: 150,
+                                                offsetY: true,
+                                                offsetOverflow: true,}"
                                             v-model="model"
                                             :search-input.sync="search"
                                             :items="searchItems"
                                             return-object
                                             item-text="name"
-                                            allow-overflow
                                             @change="closeMenu()"
                                             dense>
                                 <template #no-data>
