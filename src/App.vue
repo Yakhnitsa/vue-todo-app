@@ -1,33 +1,32 @@
 <template>
-    <v-app>
-        <v-container class="teal lighten-5" fluid>
-<!--            <v-row no-gutters>-->
-<!--                <test-component></test-component>-->
-<!--            </v-row>-->
-            <v-row>
-                <todo-board></todo-board>
-            </v-row>
-        </v-container>
-    </v-app>
-
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-// import HelloWorld from './components/HelloWorld';
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-import TodoBoard from "@/components/TodoBoard";
-// import TestComponent from "./components/testComponent";
-export default {
-  name: 'App',
+#nav {
+  padding: 30px;
 
-  components: {
-      // TestComponent,
-      TodoBoard
-    // HelloWorld,
-  },
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-  data: () => ({
-    //
-  }),
-};
-</script>
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>

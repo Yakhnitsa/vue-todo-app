@@ -17,13 +17,11 @@
                 <todo-item
                         @set-active="setTaskActive"
                         :is-active="todo === activeTask"
-                        :todo-item="todo"></todo-item>
+                        :todo-item="todo">
+                </todo-item>
             </v-list-item>
         </v-list>
-
-
     </v-card>
-
 </template>
 
 <script>
