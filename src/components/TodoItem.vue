@@ -9,9 +9,10 @@
                     outlined
                     tile
             >
-                <div v-if='loadingAwait' class="loading">
-                    ...loading...
-                </div>
+<!--                <div v-if='loadingAwait' class="loading">-->
+<!--                    ...loading...-->
+<!--                </div>-->
+                <loading-screen></loading-screen>
 
                 <v-card-title class="pa-0">
                     <v-list-item class="px-0">
@@ -101,9 +102,10 @@
 <script>
     import HoveredChip from "@/components/HoveredChip";
     import {mapMutations, mapActions, mapGetters} from 'vuex';
+    import LoadingScreen from "@/components/LoadingScreen";
     export default {
         name: "TodoItem",
-        components: {HoveredChip},
+        components: {LoadingScreen, HoveredChip},
         props:['todo-item','is-active'],
         data() {
             return{

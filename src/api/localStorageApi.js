@@ -73,21 +73,19 @@ const sleep = (ms,obj) =>{
 
 export default {
     addTodo(todo){
-        if(todo.id >= 0){
-            addOrReplace(todos,todo);
-        }
-        else{
+        if(!Object.prototype.hasOwnProperty.call(todo, "id")){
             todo.id = ++todoId;
-            todos.push(todo);
         }
-        return todo;
+        addOrReplace(todos,todo);
+        return sleep(500,todo);
     },
+
     deleteTodo(todo){
-        const index = todos.findIndex(item => item.id === todo.id);
-        if(index !== -1) todos.splice(index,1);
+        deleteIfExist(todos,todo);
     },
+
     fetchTodos(){
-        return todos;
+        return sleep(1000,todos);
     },
 
     savePerson(person){
@@ -103,20 +101,22 @@ export default {
     },
 
     fetchPeople(){
-       return people;
+       return sleep(1000,people);
     },
 
-    fetchLocations(){
-        return locations;
+    deleteLocation(location){
+        deleteIfExist(locations,location);
     },
 
     saveLocation(location){
-        if(!location.id || location.id <= 0){
+        if(Object.prototype.hasOwnProperty.call(location, "id")){
             location.id = ++locationId;
         }
-        addOrReplace(people,location);
+        addOrReplace(locations,location);
+        return sleep(500,location);
+    },
 
-        return location;
-    }
-
+    fetchLocations(){
+        return sleep(1000,locations);
+    },
 }

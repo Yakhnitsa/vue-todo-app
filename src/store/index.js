@@ -60,17 +60,17 @@ export default new Vuex.Store({
         }
     },
     actions:{
-        fetchAllTodosAction({commit}){
-            const todos = api.fetchTodos();
+        async fetchAllTodosAction({commit}){
+            const todos = await api.fetchTodos();
             commit('setTodos',todos);
         },
-        saveTodoAction({commit},todo){
-            const savedTodo = api.addTodo(todo);
+        async saveTodoAction({commit},todo){
+            const savedTodo = await api.addTodo(todo);
             commit('addTodoMutation',savedTodo);
             return savedTodo;
         },
-        fetchPeopleAction({commit}){
-            const people = api.fetchPeople();
+        async fetchPeopleAction({commit}){
+            const people = await api.fetchPeople();
             commit('setPeopleMutation',people);
         },
         async savePersonAction({commit},person){
@@ -78,12 +78,12 @@ export default new Vuex.Store({
             commit('addPersonMutation',savedPerson);
             return savedPerson;
         },
-        fetchLocationsAction({commit}){
-            const locations = api.fetchLocations();
+        async fetchLocationsAction({commit}){
+            const locations = await api.fetchLocations();
             commit('setLocationsMutation',locations);
         },
-        saveLocationAction({commit}, location){
-            const savedLocation = api.saveLocation(location);
+        async saveLocationAction({commit}, location){
+            const savedLocation = await api.saveLocation(location);
             commit('addLocationMutation', savedLocation);
             return savedLocation;
         }
