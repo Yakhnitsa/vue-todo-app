@@ -1,13 +1,12 @@
 <template>
     <div class="loading" v-bind:style="sceneStyle">
-        <div class="slot pa-auto">
-            <slot >
-                <v-progress-circular
-                        indeterminate
-                        color="secondary"
-                ></v-progress-circular>
-            </slot>
-        </div>
+        <slot >
+            <v-progress-circular
+                    class="text--disabled"
+                    indeterminate
+                    color="secondary"
+            ></v-progress-circular>
+        </slot>
 
     </div>
 </template>
@@ -17,27 +16,18 @@
         name: "LoadingScreen",
         props:{
             isLoading: Boolean,
-            color: {
+            background: {
                 type: String,
-                default: 'rgb( 205, 205, 205)'
+                default: 'rgba( 205, 205, 205, 0.4)'
             },
-            opacity: {
-                type: Number,
-                default: .3,
-            }
 
         },
         data: () =>({
-            // sceneStyle :{
-            //     // background: this.color,
-            //
-            // }
         }),
         computed:{
             sceneStyle(){
                 return {
-                    background: this.color,
-                    opacity: this.opacity,
+                    background: this.background,
                 }
             }
         }
@@ -52,15 +42,14 @@
         left:       0;
         height:     100%;
         width:      100%;
-        /*display: flex;*/
-        /*justify-content: center;*/
-        /*background: rgba( 205, 205, 205, 0.5 );*/
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .slot{
-        opacity: .9;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        /*position: absolute;*/
+        /*top: 50%;*/
+        /*left: 50%;*/
+        /*transform: translate(-50%, -50%);*/
     }
 </style>
