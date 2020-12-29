@@ -1,5 +1,5 @@
 <template>
-    <div class="loading" v-bind:style="sceneStyle">
+    <div v-show="isLoading" class="loading" v-bind:style="sceneStyle">
         <slot >
             <v-progress-circular
                     class="text--disabled"

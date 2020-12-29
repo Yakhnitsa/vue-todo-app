@@ -3,17 +3,13 @@
 
         <template v-slot:default="{ hover }">
             <v-card
-                    :elevation="hover ? 6 : 1"
+                    :elevation="hover ? 3 : 1"
                     width="100%"
                     class="mx-auto px-3 py-1"
                     outlined
                     tile
             >
-<!--                <div v-if='loadingAwait' class="loading">-->
-<!--                    ...loading...-->
-<!--                </div>-->
-                <loading-screen></loading-screen>
-
+                <loading-screen :is-loading="loadingAwait"></loading-screen>
                 <v-card-title class="pa-0">
                     <v-list-item class="px-0">
                         <v-list-item-action class="my-0 mr-3">
@@ -131,7 +127,7 @@
             },
         },
         methods:{
-            ...mapMutations(['addPersonMutation'],{
+            ...mapMutations({
 
             }),
             ...mapActions(['saveTodoAction','savePersonAction','saveLocationAction']),
@@ -150,10 +146,11 @@
             },
             addNewLocation(locationName){
                 let location = {name:locationName}
-
+                this.loadingAwait = true;
                 this.saveLocationAction(location)
                     .then(res => {
                         this.todoItem.location = res
+                        this.loadingAwait = false;
                     });
             },
             addPerson(personName){
@@ -193,7 +190,9 @@
             todoItem:{
                 deep: true,
                 handler(){
-                    this.saveTodoAction(this.todoItem);
+                    this.loadingAwait = true
+                    this.saveTodoAction(this.todoItem)
+                        .finally(()=> this.loadingAwait = false);
                 }
             }
         },
