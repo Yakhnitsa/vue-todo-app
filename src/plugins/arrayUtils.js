@@ -24,12 +24,36 @@ export function reduceToCategories(array,objProp){
     },[]);
 }
 
+export function reduceToSuggestedCategories(array,categories,objProp){
+    const result = [];
+    categories.forEach(category =>{
+        let items = [];
+        if(!category){
+            items = array.filter(el => !el[objProp])
+        }else if(typeof category === 'object' && category.id !== undefined){
+            items = array.filter(el =>{
+                return el[objProp] ? el[objProp].id === category.id : false;
+            })
+        }else{
+            items = array.filter(el => el[objProp] === category);
+        }
+        result.push({
+            category: category,
+            items: items
+        })
+    })
+    return result;
+}
+
 const containCategory = (array,category) => {
     if(!category){ //if category is undefined or null
         return array.findIndex(element=> !element.category) !== -1;
     }
     else if(typeof category === 'object' && category.id !== undefined){
-        return array.findIndex(element => element.category.id === category.id) !==-1;
+        return array.findIndex(element =>
+        {
+            return element.category ? element.category.id === category.id : false;
+        }) !==-1;
     }
     return array.findIndex(element => element.category === category) !==-1;
 }
@@ -41,7 +65,8 @@ const putToCategory = (array,obj,objProp) =>{
         index= array.findIndex(item=> !item.category);
     }
     else if(typeof property === 'object' && property.id !== undefined){
-        index= array.findIndex(item => item.category.id === property.id);
+        index= array.findIndex(item => item.category ?
+            item.category.id === property.id : false);
     }else{
         index= array.findIndex(item => item.category === property);
     }
