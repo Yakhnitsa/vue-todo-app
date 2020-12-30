@@ -60,6 +60,11 @@ export default new Vuex.Store({
         }
     },
     actions:{
+        fetchAllData({dispatch }){
+            dispatch('fetchAllTodosAction');
+            dispatch('fetchPeopleAction');
+            dispatch('fetchLocationsAction');
+        },
         async fetchAllTodosAction({commit}){
             const todos = await api.fetchTodos();
             commit('setTodos',todos);
