@@ -1,14 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/people">People</router-link>
-      <router-link to="/places">Places</router-link>
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<!--  <div id="app">-->
+<!--    <div id="nav">-->
+<!--      <router-link to="/">Home</router-link> |-->
+<!--      <router-link to="/people">People</router-link>-->
+<!--      <router-link to="/places">Places</router-link>-->
+<!--      <router-link to="/about">About</router-link>-->
+<!--    </div>-->
+<!--    <router-view/>-->
+<!--  </div>-->
+  <v-app>
+    <v-container class="teal lighten-5" fluid>
+      <v-row>
+        <router-view></router-view>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
+<script>
+  // import TodoBoard from "@/components/TodoBoard";
+  export default {
+    components: {
+
+    }
+  }
+</script>
 
 <style lang="scss">
 #app {

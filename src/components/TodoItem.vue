@@ -3,7 +3,7 @@
 
         <template v-slot:default="{ hover }">
             <v-card
-                    :elevation="hover ? 3 : 1"
+                    :elevation="hover ? 1 : 0"
                     width="100%"
                     class="mx-auto px-3 py-1"
                     outlined
@@ -204,6 +204,7 @@
 
 <style scoped>
     .v-list-item {
+        text-align: left;
         min-height: 30px;
     }
     .loading {
