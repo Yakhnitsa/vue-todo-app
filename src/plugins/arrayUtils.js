@@ -25,7 +25,10 @@ export function reduceToCategories(array,objProp){
 }
 
 const containCategory = (array,category) => {
-    if(typeof category === 'object' && category.id !== undefined){
+    if(!category){ //if category is undefined or null
+        return array.findIndex(element=> !element.category) !== -1;
+    }
+    else if(typeof category === 'object' && category.id !== undefined){
         return array.findIndex(element => element.category.id === category.id) !==-1;
     }
     return array.findIndex(element => element.category === category) !==-1;
@@ -33,10 +36,14 @@ const containCategory = (array,category) => {
 
 const putToCategory = (array,obj,objProp) =>{
     let index = -1;
-    if(typeof obj[objProp] === 'object' && obj[objProp].id !== undefined){
-        index= array.findIndex(item => item.category.id === obj[objProp].id);
+    let property = obj[objProp];
+    if(!property){
+        index= array.findIndex(item=> !item.category);
+    }
+    else if(typeof property === 'object' && property.id !== undefined){
+        index= array.findIndex(item => item.category.id === property.id);
     }else{
-        index= array.findIndex(item => item.category === obj[objProp]);
+        index= array.findIndex(item => item.category === property);
     }
     if(index !== -1){
         array[index].items.push(obj);
