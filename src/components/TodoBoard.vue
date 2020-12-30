@@ -13,13 +13,17 @@
         </v-list>
 
         <v-list v-else>
-             <v-list-item v-for="todo in todoItems" :key="todo.id">
-                <todo-item
-                        @set-active="setTaskActive"
-                        :is-active="todo === activeTask"
-                        :todo-item="todo">
-                </todo-item>
-            </v-list-item>
+            <template v-for="(category,index) in categories" >
+                <v-list-item :key="'cat_' + index">{{category.category}}</v-list-item>
+                <v-list-item v-for="todo in category.items" :key="todo.id">
+                    <todo-item
+                            @set-active="setTaskActive"
+                            :is-active="todo === activeTask"
+                            :todo-item="todo">
+                    </todo-item>
+                </v-list-item>
+            </template>
+
         </v-list>
     </v-card>
 </template>
@@ -27,17 +31,17 @@
 <script>
     import TodoItem from "@/components/TodoItem";
     // import TestButton from "@/components/TestButton";
-    import {mapGetters,mapActions} from 'vuex';
+    import {mapGetters} from 'vuex';
 
     export default {
         name: "TodoBoard",
         components: {TodoItem},
         props:{
-
+            categories: Array,
+            isLoading: Boolean
         },
         data: () => ({
             activeTask:null,
-            isLoading: true
         }),
         computed:{
             ...mapGetters({
@@ -45,20 +49,12 @@
             }),
         },
         methods:{
-            ...mapActions(['fetchAllTodosAction','fetchPeopleAction','fetchLocationsAction']),
             setTaskActive(todo){
                 this.activeTask = todo;
             }
         },
         mounted(){
-            console.log('Bord created')
-            this.isLoading = true;
-            const p1 = this.fetchAllTodosAction();
-            const p2 = this.fetchPeopleAction();
-            const p3 = this.fetchLocationsAction();
-            Promise.all([p1,p2,p3]).then(() =>{
-                this.isLoading=false;
-            })
+
         }
     }
 </script>

@@ -1,24 +1,31 @@
 <template>
     <v-container fluid>
         people
-        <v-row>{{allTodos.length}}</v-row>
-        <v-row>{{people.length}}</v-row>
-        <v-row>
-            <v-list>
-                <v-list-item v-for="(cat,index) in todoCategories" :key="index">
-                    {{cat.category ? cat.category.name : 'No category'}} : {{cat.items.length}}
-                </v-list-item>
-            </v-list>
+        <v-row>{{allTodos.length}}
+
         </v-row>
+        <v-row>
+            <todo-board :categories="todoCategories" :is-loading="false"></todo-board>
+        </v-row>
+<!--        <v-row>{{people.length}}</v-row>-->
+<!--        <v-row>-->
+<!--            <v-list>-->
+<!--                <v-list-item v-for="(cat,index) in todoCategories" :key="index">-->
+<!--                    {{cat.category ? cat.category.name : 'No category'}} : {{cat.items.length}}-->
+<!--                </v-list-item>-->
+<!--            </v-list>-->
+<!--        </v-row>-->
     </v-container>
 </template>
 
 <script>
     import {mapGetters} from "vuex";
     import {reduceToCategories} from '../plugins/arrayUtils'
+    import TodoBoard from "@/components/TodoBoard";
 
     export default {
         name: "People",
+        components: {TodoBoard},
         computed:{
             ...mapGetters({
                 allTodos: 'getAllTodos',
