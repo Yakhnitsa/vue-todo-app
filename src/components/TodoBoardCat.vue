@@ -14,7 +14,9 @@
 
         <v-list v-else>
             <template v-for="(category,index) in categories" >
-                <v-list-item :key="'cat_' + index">{{category.category}}</v-list-item>
+                <v-list-item :key="'cat_' + index">
+                    <category-title :category="category.title"></category-title>
+                </v-list-item>
                 <v-list-item v-for="todo in category.items" :key="todo.id">
                     <todo-item
                             @set-active="setTaskActive"
@@ -32,10 +34,11 @@
     import TodoItem from "@/components/TodoItem";
     // import TestButton from "@/components/TestButton";
     import {mapGetters} from 'vuex';
+    import CategoryTitle from "@/components/CategoryTitle";
 
     export default {
         name: "TodoBoard",
-        components: {TodoItem},
+        components: {CategoryTitle, TodoItem},
         props:{
             categories: Array,
             isLoading: Boolean

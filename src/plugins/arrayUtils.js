@@ -17,7 +17,7 @@ export function deleteIfExist(array, item, prop = 'id') {
 export function reduceToCategories(array,objProp){
     return array.reduce((result,value) =>{
         if(!containCategory(result,value[objProp])){
-            result.push({category:value[objProp], items:[]});
+            result.push({title:value[objProp], items:[]});
         }
         putToCategory(result,value,objProp)
         return result;
@@ -47,28 +47,28 @@ export function reduceToSuggestedCategories(array,categories,objProp){
 
 const containCategory = (array,category) => {
     if(!category){ //if category is undefined or null
-        return array.findIndex(element=> !element.category) !== -1;
+        return array.findIndex(element=> !element.title) !== -1;
     }
     else if(typeof category === 'object' && category.id !== undefined){
         return array.findIndex(element =>
         {
-            return element.category ? element.category.id === category.id : false;
+            return element.title ? element.title.id === category.id : false;
         }) !==-1;
     }
-    return array.findIndex(element => element.category === category) !==-1;
+    return array.findIndex(element => element.title === category) !==-1;
 }
 
 const putToCategory = (array,obj,objProp) =>{
     let index = -1;
     let property = obj[objProp];
     if(!property){
-        index= array.findIndex(item=> !item.category);
+        index= array.findIndex(item=> !item.title);
     }
     else if(typeof property === 'object' && property.id !== undefined){
-        index= array.findIndex(item => item.category ?
-            item.category.id === property.id : false);
+        index= array.findIndex(item => item.title ?
+            item.title.id === property.id : false);
     }else{
-        index= array.findIndex(item => item.category === property);
+        index= array.findIndex(item => item.title === property);
     }
     if(index !== -1){
         array[index].items.push(obj);
