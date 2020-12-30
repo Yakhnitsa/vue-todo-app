@@ -67,6 +67,7 @@ const putToCategory = (array,obj,objProp) =>{
     else if(typeof property === 'object' && property.id !== undefined){
         index= array.findIndex(item => item.title ?
             item.title.id === property.id : false);
+
     }else{
         index= array.findIndex(item => item.title === property);
     }
