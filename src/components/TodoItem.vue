@@ -56,26 +56,26 @@
                     <v-divider class="my-1"></v-divider>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten">mdi-account-circle</v-icon>
-                        <hovered-chip ref="personChip"
+                        <editable-chip ref="personChip"
                                       :input-item.sync="todoItem.person"
                                       :search-items="people"
                                       @addNewRecord="addPerson"
                                       @delete-item="deletePerson">
 <!--                            <template #default>{{todoItem.person.name}}</template>-->
-                        </hovered-chip>
+                        </editable-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">location_on</v-icon>
-                        <hovered-chip
+                        <editable-chip
                                 :input-item.sync="todoItem.location"
                                 :search-items="locations"
                                 @addNewRecord="addNewLocation"
                                 @delete-item="deleteLocation">
-                        </hovered-chip>
+                        </editable-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
                         <v-icon color="blue-grey lighten-1">add_task</v-icon>
-                        <hovered-chip v-show="hasChildTask">
+                        <editable-chip v-show="hasChildTask">
                             <template #default>
                                 {{todoItem.childTask}}
                             </template>
@@ -87,7 +87,7 @@
                                 </v-list>
                             </template>
 
-                        </hovered-chip>
+                        </editable-chip>
                     </v-list-item>
                 </v-card-text>
             </v-card>
@@ -96,12 +96,12 @@
 </template>
 
 <script>
-    import HoveredChip from "@/components/HoveredChip";
+    import EditableChip from "@/components/EditableChip";
     import {mapMutations, mapActions, mapGetters} from 'vuex';
     import LoadingScreen from "@/components/LoadingScreen";
     export default {
         name: "TodoItem",
-        components: {LoadingScreen, HoveredChip},
+        components: {LoadingScreen, EditableChip},
         props:['todo-item','is-active'],
         data() {
             return{
