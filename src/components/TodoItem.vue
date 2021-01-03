@@ -64,9 +64,10 @@
 <!--                            <template #default>{{todoItem.person.name}}</template>-->
                         </editable-chip>
                     </v-list-item>
-                    <v-list-item class="px-0">
+                    <v-list-item class="px-0 mb-1">
                         <v-icon color="blue-grey lighten-1">location_on</v-icon>
                         <editable-chip
+                                class="mt-1"
                                 :input-item.sync="todoItem.location"
                                 :search-items="locations"
                                 @addNewRecord="addNewLocation"

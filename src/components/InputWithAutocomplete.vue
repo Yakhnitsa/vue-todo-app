@@ -1,5 +1,5 @@
 <template>
-    <v-autocomplete class="white px-2"
+    <v-autocomplete class="white px-2 text-left"
                     :menu-props="menuProps"
                     v-model="model"
                     :search-input.sync="search"
@@ -61,5 +61,8 @@
 </script>
 
 <style scoped>
+    div{
+        text-align: left;
+    }
 
 </style>

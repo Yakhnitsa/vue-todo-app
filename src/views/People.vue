@@ -25,8 +25,8 @@
             }
         },
         mounted(){
-            const result = this.$store.dispatch('fetchAllData');
-            result.finally(() => console.log('data fetched'))
+            // const result = this.$store.dispatch('fetchAllData');
+            // result.finally(() => console.log('data fetched'))
         }
     }
 </script>
