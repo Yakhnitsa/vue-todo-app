@@ -2,27 +2,29 @@
   "todos": [
     {
       "id":0,
-      "text":"Buy tickets",
+      "text": "Buy tickets",
       "isDone": false,
       "person": {
         "id": 0,
-        "name": "Wife"},
+        "name": "Wife"
+      },
       "location":null,
       "childTask":null
     },
     {
       "id":1,
-      "text":"Pack all my staff",
+      "text": "Pack all my staff",
       "isDone": false,
       "person":null,
       "location":{
         "id": 0,
-        "name": "Home"},
+        "name": "Home"
+      },
       "childTask":null
     },
     {
       "id":2,
-      "text":"Buy presents for nephews",
+      "text": "Buy presents for nephews",
       "isDone": false,
       "person":null,
       "location": {
@@ -33,18 +35,34 @@
     },
     {
       "id":3,
-      "text":"Spell list for a vacation",
+      "text": "Spell list for a vacation",
       "isDone": false,
       "person": {
         "id": 1,
-        "name": "Boss"},
+        "name": "Boss"
+      },
       "location": {
         "id": 1,
-        "name": "Work"},
+        "name": "Work"
+      },
       "childTask":null
     }
 
   ],
-  "people": [],
-  "places": []
+  "people": [
+    {"id": 0, "name": "Wife"},
+    {"id": 1, "name": "Boss"},
+    {"id": 2, "name": "Mom"},
+    {"id": 3, "name": "Ann"},
+    {"id": 4, "name": "Prostitute"},
+    {"id": 5, "name": "Plumber"}
+  ],
+  "locations": [
+    {"id": 0, "name": "Home"},
+    {"id": 1, "name": "Work"},
+    {"id": 2, "name": "Gas station"},
+    {"id": 3, "name": "Supermarket"},
+    {"id": 4, "name": "Lavina mall"},
+    {"id": 5, "name": "Hayvoron"}
+  ]
 }

@@ -1,6 +1,3 @@
-import {addOrReplace, deleteIfExist} from "../plugins/arrayUtils";
-
-const url = "http://localhost:3001/";
 const axios = require('axios');
 axios.defaults.baseURL = "http://localhost:3001/";
 
@@ -15,47 +12,61 @@ export default {
         const todos = await axios.get('people');
         return sleep(1000,todos);
     },
-    addTodo(todo){
-        if(!Object.prototype.hasOwnProperty.call(todo, "id")){
-            todo.id = ++todoId;
+
+    async saveTodo(todo){
+        let savedTodo = null;
+        if(!todo.id){
+            savedTodo = await axios.post('todos',todo);
+        }else{
+            savedTodo = await axios.put('todos/' + todo.id,todo);
         }
-        addOrReplace(todos,todo);
-        return sleep(500,todo);
+        return sleep(500,savedTodo);
     },
 
-    deleteTodo(todo){
-        deleteIfExist(todos,todo);
+    async deleteTodo(todo){
+        return await axios.delete('todos/' + todo.id);
     },
 
-    savePerson(person){
-        if(!person.id || person.id <= 0){
-            person.id = ++personId;
-        }
-        addOrReplace(people,person);
-        return sleep(500,person);
-    },
-
-    deletePerson(person){
-        deleteIfExist(people,person);
-    },
-
-    fetchPeople(){
+    async fetchPeople(){
+        const people = await axios.get('people');
         return sleep(1000,people);
     },
 
-    deleteLocation(location){
-        deleteIfExist(locations,location);
-    },
-
-    saveLocation(location){
-        if(Object.prototype.hasOwnProperty.call(location, "id")){
-            location.id = ++locationId;
+    async savePerson(person){
+        let savedPerson = null;
+        if(!person.id){
+            savedPerson = await axios.post('people',person);
+        }else{
+            savedPerson = await axios.put('people/' + person.id,person);
         }
-        addOrReplace(locations,location);
-        return sleep(500,location);
+        return sleep(500,savedPerson);
     },
 
-    fetchLocations(){
+    async deletePerson(person){
+        if(person.id){
+            return await axios.delete('people/' + person.id);
+        }
+    },
+
+    async fetchLocations(){
+        const locations = await axios.get('locations');
         return sleep(1000,locations);
     },
+
+    async saveLocation(location){
+        let savedLocation = null;
+        if(!location.id){
+            savedLocation = await axios.post('locations',location);
+        }else{
+            savedLocation = await axios.put('locations/' + location.id,location);
+        }
+        return sleep(500,savedLocation);
+    },
+
+    async deleteLocation(location){
+        if(location.id){
+            return await axios.delete('locations/' + location.id);
+        }
+    },
+
 }
