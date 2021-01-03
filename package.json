@@ -5,9 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "mock-server": "json-server --port 3001 --watch json-server/todo.db.json"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "material-design-icons-iconfont": "^6.1.0",
     "vue": "^2.6.11",
@@ -23,6 +25,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "json-server": "^0.16.3",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "~2.0.8",

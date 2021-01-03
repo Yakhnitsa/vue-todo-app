@@ -1,0 +1,50 @@
+{
+  "todos": [
+    {
+      "id":0,
+      "text":"Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"},
+      "location":null,
+      "childTask":null
+    },
+    {
+      "id":1,
+      "text":"Pack all my staff",
+      "isDone": false,
+      "person":null,
+      "location":{
+        "id": 0,
+        "name": "Home"},
+      "childTask":null
+    },
+    {
+      "id":2,
+      "text":"Buy presents for nephews",
+      "isDone": false,
+      "person":null,
+      "location": {
+        "id": 4,
+        "name": "Lavina mall"
+      },
+      "childTask":null
+    },
+    {
+      "id":3,
+      "text":"Spell list for a vacation",
+      "isDone": false,
+      "person": {
+        "id": 1,
+        "name": "Boss"},
+      "location": {
+        "id": 1,
+        "name": "Work"},
+      "childTask":null
+    }
+
+  ],
+  "people": [],
+  "places": []
+}

@@ -5,7 +5,7 @@
             <v-card
                     :elevation="hover ? 1 : 0"
                     width="100%"
-                    class="mx-auto px-3 py-1"
+                    class="mx-auto px-2 py-0"
                     outlined
                     tile
             >
@@ -205,7 +205,7 @@
 <style scoped>
     .v-list-item {
         text-align: left;
-        min-height: 30px;
+        min-height: 20px;
     }
     .loading {
         position: absolute;

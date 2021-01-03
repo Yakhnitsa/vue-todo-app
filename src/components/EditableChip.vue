@@ -63,7 +63,7 @@
 <script>
     import InputWithAutocomplete from "@/components/InputWithAutocomplete";
     export default {
-        name: "HoveredChip",
+        name: "EditableChip",
         components: {InputWithAutocomplete},
         props:['searchItems','input-item'],
         data: () => ({
