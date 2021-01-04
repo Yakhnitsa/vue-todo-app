@@ -1,6 +1,15 @@
 <template>
   <v-container fluid>
-    <todo-edit-dialog></todo-edit-dialog>
+    <todo-edit-dialog>
+      <template v-slot:activator="props">
+        <v-btn
+                color="primary"
+                v-bind="props.attrs"
+                v-on="props.activate">
+          +
+        </v-btn>
+      </template>
+    </todo-edit-dialog>
   </v-container>
 </template>
 

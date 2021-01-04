@@ -11,6 +11,11 @@
   <v-app>
     <v-container class="teal lighten-5" fluid>
       <v-row>
+              <router-link to="/">Home</router-link>
+              <router-link to="/people">People</router-link>
+              <router-link to="/places">Places</router-link>
+      </v-row>
+      <v-row>
         <router-view></router-view>
       </v-row>
     </v-container>

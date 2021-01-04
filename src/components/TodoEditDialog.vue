@@ -5,19 +5,11 @@
             max-width="600px"
     >
         <template v-slot:activator="{ on, attrs }">
-            <slot name="activator">
-                <v-btn
-                        color="primary"
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                >
-                    Open Dialog
-                </v-btn>
+            <slot name="activator" :activate="on" :attrs="attrs">
 
             </slot>
-
         </template>
+
         <v-card>
             <v-card-title>
                 <span class="headline">Edit Todo</span>
@@ -118,6 +110,9 @@
             ...mapActions(['saveTodoAction','savePersonAction','saveLocationAction']),
             saveAndClose(){
                 this.$emit('save-todo',this.todoForm);
+            },
+            open(){
+                this.dialog = true;
             },
             close(){
                 this.dialog = false;
