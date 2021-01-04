@@ -26,7 +26,10 @@
       "id": 2,
       "text": "Buy presents for nephews",
       "isDone": false,
-      "person": null,
+      "person": {
+        "id": 3,
+        "name": "Ann"
+      },
       "location": {
         "id": 4,
         "name": "Lavina mall"
@@ -90,7 +93,10 @@
       "id": 7,
       "text": "Clean all the house",
       "isDone": false,
-      "person": null,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
       "location": {
         "id": 0,
         "name": "Home"
@@ -117,6 +123,72 @@
         "id": 0,
         "name": "Home"
       },
+      "childTask": null
+    },
+    {
+      "id": 10,
+      "text": "Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": null,
+      "childTask": null
+    },
+    {
+      "id": 11,
+      "text": "Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": null,
+      "childTask": null
+    },
+    {
+      "id": 12,
+      "text": "Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": null,
+      "childTask": null
+    },
+    {
+      "id": 13,
+      "text": "Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": null,
+      "childTask": null
+    },
+    {
+      "id": 14,
+      "text": "Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": null,
+      "childTask": null
+    },
+    {
+      "id": 15,
+      "text": "Buy tickets",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": null,
       "childTask": null
     }
   ],

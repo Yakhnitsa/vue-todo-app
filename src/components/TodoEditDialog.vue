@@ -125,13 +125,16 @@
                         this.closeDialog();
                     })
             },
+
             openDialog() {
                 this.dialog = true;
             },
+
             closeDialog() {
                 this.clearFrom();
                 this.dialog = false;
             },
+
             addNewLocation(locationName) {
                 let location = {name: locationName}
                 this.loading = true;
@@ -141,6 +144,7 @@
                         this.loading = false;
                     });
             },
+
             addPerson(personName) {
                 let person = {name: personName}
                 this.loadingAwait = true;
@@ -150,12 +154,15 @@
                         this.loading = false;
                     });
             },
+
             deletePerson() {
                 this.todoForm.person = null;
             },
+
             deleteLocation() {
                 this.todoForm.location = null;
             },
+
             pushTodo(todo) {
                 Object.assign(this.todoForm, todo);
                 this.openDialog();
