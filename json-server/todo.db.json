@@ -138,57 +138,13 @@
     },
     {
       "id": 11,
-      "text": "Buy tickets",
+      "text": "Take tablet from Rozetka",
       "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
+      "person": null,
+      "location": {
+        "name": "Rozetka market",
+        "id": 6
       },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 12,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 13,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 14,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 15,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
       "childTask": null
     }
   ],
@@ -242,6 +198,10 @@
     {
       "id": 5,
       "name": "Hayvoron"
+    },
+    {
+      "name": "Rozetka market",
+      "id": 6
     }
   ]
 }

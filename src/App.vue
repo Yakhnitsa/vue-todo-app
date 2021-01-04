@@ -18,8 +18,6 @@
                         zIndex: 1100,
                         backgroundColor: '#E0F2F1'
                     }"
-
-                    style="z-index: 1100"
                     absolute
                     large
                     elevation="2"

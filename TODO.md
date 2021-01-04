@@ -1,0 +1,1 @@
+Fix undefined error when add new place
