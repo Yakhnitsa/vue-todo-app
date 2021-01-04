@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import api from '../api/localStorageApi';
+import api from '../api/jsonServerApi';
 
 import {addOrReplace} from '../plugins/arrayUtils';
 
@@ -32,7 +32,7 @@ export default new Vuex.Store({
         //TODO todo group by person, by place
     },
     mutations: {
-        setTodos(state,todos){
+        setTodosMutation(state,todos){
             state.todos = todos;
         },
         setLocationsMutation(state,locations){
@@ -66,29 +66,35 @@ export default new Vuex.Store({
             dispatch('fetchLocationsAction');
         },
         async fetchAllTodosAction({commit}){
-            const todos = await api.fetchTodos();
-            commit('setTodos',todos);
+            const resp = await api.fetchTodos();
+            const todos = await resp.data;
+            commit('setTodosMutation',todos);
         },
         async saveTodoAction({commit},todo){
-            const savedTodo = await api.addTodo(todo);
+            const resp = await api.saveTodo(todo);
+            const savedTodo = resp.data;
             commit('addTodoMutation',savedTodo);
             return savedTodo;
         },
         async fetchPeopleAction({commit}){
-            const people = await api.fetchPeople();
+            const resp = await api.fetchPeople();
+            const people = resp.data;
             commit('setPeopleMutation',people);
         },
         async savePersonAction({commit},person){
-            const savedPerson = await api.savePerson(person);
+            const resp = await api.savePerson(person);
+            const savedPerson = resp.data;
             commit('addPersonMutation',savedPerson);
             return savedPerson;
         },
         async fetchLocationsAction({commit}){
-            const locations = await api.fetchLocations();
+            const resp = await api.fetchLocations();
+            const locations = resp.data;
             commit('setLocationsMutation',locations);
         },
         async saveLocationAction({commit}, location){
-            const savedLocation = await api.saveLocation(location);
+            const resp = await api.saveLocation(location);
+            const savedLocation = resp.data;
             commit('addLocationMutation', savedLocation);
             return savedLocation;
         }

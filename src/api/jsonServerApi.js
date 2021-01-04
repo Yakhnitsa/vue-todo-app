@@ -9,7 +9,7 @@ const sleep = (ms,obj) =>{
 
 export default {
     async fetchTodos() {
-        const todos = await axios.get('people');
+        const todos = await axios.get('todos');
         return sleep(1000,todos);
     },
 

@@ -5,9 +5,17 @@
             max-width="600px"
     >
         <template v-slot:activator="{ on, attrs }">
-            <slot name="activator" :activate="on" :attrs="attrs">
 
+            <slot name="activator" :activate="on" :attrs="attrs">
+                <v-btn
+                        color="primary"
+                        dark
+                        v-bind="attrs"
+                        v-on="on">
+                    Open Dialog
+                </v-btn>
             </slot>
+
         </template>
 
         <v-card>
