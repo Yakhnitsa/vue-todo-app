@@ -1,40 +1,40 @@
 {
   "todos": [
     {
-      "id":0,
+      "id": 0,
       "text": "Buy tickets",
       "isDone": false,
       "person": {
         "id": 0,
         "name": "Wife"
       },
-      "location":null,
-      "childTask":null
+      "location": null,
+      "childTask": null
     },
     {
-      "id":1,
+      "id": 1,
       "text": "Pack all my staff",
       "isDone": false,
-      "person":null,
-      "location":{
+      "person": null,
+      "location": {
         "id": 0,
         "name": "Home"
       },
-      "childTask":null
+      "childTask": null
     },
     {
-      "id":2,
+      "id": 2,
       "text": "Buy presents for nephews",
       "isDone": false,
-      "person":null,
+      "person": null,
       "location": {
         "id": 4,
         "name": "Lavina mall"
       },
-      "childTask":null
+      "childTask": null
     },
     {
-      "id":3,
+      "id": 3,
       "text": "Spell list for a vacation",
       "isDone": false,
       "person": {
@@ -45,24 +45,131 @@
         "id": 1,
         "name": "Work"
       },
-      "childTask":null
+      "childTask": null
+    },
+    {
+      "id": 4,
+      "text": "Buy tablet for Yuliya",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": {
+        "id": 4,
+        "name": "Lavina mall"
+      },
+      "childTask": null
+    },
+    {
+      "id": 5,
+      "text": "Buy tablet for Yuliya",
+      "isDone": false,
+      "person": null,
+      "location": {
+        "id": 2,
+        "name": "Gas station"
+      },
+      "childTask": null
+    },
+    {
+      "id": 6,
+      "text": "Buy tablet for Yuliya",
+      "isDone": false,
+      "person": {
+        "id": 0,
+        "name": "Wife"
+      },
+      "location": {
+        "id": 4,
+        "name": "Lavina mall"
+      },
+      "childTask": null
+    },
+    {
+      "id": 7,
+      "text": "Clean all the house",
+      "isDone": false,
+      "person": null,
+      "location": {
+        "id": 0,
+        "name": "Home"
+      },
+      "childTask": null
+    },
+    {
+      "id": 8,
+      "text": "Buy tablet for Yuliya",
+      "isDone": false,
+      "person": null,
+      "location": {
+        "id": 4,
+        "name": "Lavina mall"
+      },
+      "childTask": null
+    },
+    {
+      "id": 9,
+      "text": "Wash the dishes",
+      "isDone": false,
+      "person": null,
+      "location": {
+        "id": 0,
+        "name": "Home"
+      },
+      "childTask": null
     }
-
   ],
   "people": [
-    {"id": 0, "name": "Wife"},
-    {"id": 1, "name": "Boss"},
-    {"id": 2, "name": "Mom"},
-    {"id": 3, "name": "Ann"},
-    {"id": 4, "name": "Prostitute"},
-    {"id": 5, "name": "Plumber"}
+    {
+      "id": 0,
+      "name": "Wife"
+    },
+    {
+      "id": 1,
+      "name": "Boss"
+    },
+    {
+      "id": 2,
+      "name": "Mom"
+    },
+    {
+      "id": 3,
+      "name": "Ann"
+    },
+    {
+      "id": 4,
+      "name": "Prostitute"
+    },
+    {
+      "id": 5,
+      "name": "Plumber"
+    }
   ],
   "locations": [
-    {"id": 0, "name": "Home"},
-    {"id": 1, "name": "Work"},
-    {"id": 2, "name": "Gas station"},
-    {"id": 3, "name": "Supermarket"},
-    {"id": 4, "name": "Lavina mall"},
-    {"id": 5, "name": "Hayvoron"}
+    {
+      "id": 0,
+      "name": "Home"
+    },
+    {
+      "id": 1,
+      "name": "Work"
+    },
+    {
+      "id": 2,
+      "name": "Gas station"
+    },
+    {
+      "id": 3,
+      "name": "Supermarket"
+    },
+    {
+      "id": 4,
+      "name": "Lavina mall"
+    },
+    {
+      "id": 5,
+      "name": "Hayvoron"
+    }
   ]
 }

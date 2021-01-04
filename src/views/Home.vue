@@ -5,7 +5,8 @@
         <v-btn
                 color="primary"
                 v-bind="props.attrs"
-                v-on="props.activate">
+                @click="props.activate({})"
+        >
           +
         </v-btn>
       </template>
@@ -26,6 +27,12 @@ export default {
     ...mapGetters({
       allTodos: 'getAllTodos'
     })
+  },
+  methods:{
+    pushTodo(val){
+      console.log(val);
+      val.click();
+    }
   }
 
 }

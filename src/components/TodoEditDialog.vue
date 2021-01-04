@@ -6,7 +6,7 @@
     >
         <template v-slot:activator="{ on, attrs }">
 
-            <slot name="activator" :activate="on" :attrs="attrs">
+            <slot name="activator" :activate="pushTodo" :attrs="attrs">
                 <v-btn
                         color="primary"
                         dark
@@ -79,7 +79,7 @@
                 <v-btn
                         color="blue darken-1"
                         text
-                        @click="close"
+                        @click="closeDialog"
                 >
                     Close
                 </v-btn>
@@ -92,77 +92,95 @@
 <script>
     import EditableChip from "@/components/EditableChip";
     import {mapActions, mapGetters} from "vuex";
+
     export default {
         name: "TodoEditDialog",
-        components:{EditableChip},
-        props:['todo'],
+        components: {EditableChip},
+        props: [],
         data: () => ({
             dialog: false,
             loading: false,
-            todoForm:{
-                id:null,
-                text:'',
+            todoForm: {
+                id: null,
+                text: '',
                 isDone: false,
                 person: null,
-                location:null,
-                childTask:null,
+                location: null,
+                childTask: null,
             }
         }),
-        computed:{
+        computed: {
             ...mapGetters({
                 people: 'getAllPeople',
                 locations: 'getAllLocations'
             }),
         },
-        methods:{
-            ...mapActions(['saveTodoAction','savePersonAction','saveLocationAction']),
-            saveAndClose(){
-                this.$emit('save-todo',this.todoForm);
+        methods: {
+            ...mapActions(['saveTodoAction', 'savePersonAction', 'saveLocationAction']),
+            saveAndClose() {
+                this.loading = true;
+                this.saveTodoAction(this.todoForm)
+                    .then(() => {
+                        this.loading = false;
+                        this.closeDialog();
+                    })
             },
-            open(){
+            openDialog() {
                 this.dialog = true;
             },
-            close(){
+            closeDialog() {
+                this.clearFrom();
                 this.dialog = false;
             },
-            updateForm(){
-                Object.assign(this.todoForm,this.todo);
-            },
-            addNewLocation(locationName){
-                let location = {name:locationName}
-                this.loadingAwait = true;
+            addNewLocation(locationName) {
+                let location = {name: locationName}
+                this.loading = true;
                 this.saveLocationAction(location)
                     .then(res => {
                         this.todoItem.location = res
                         this.loading = false;
                     });
             },
-            addPerson(personName){
-                let person = {name:personName}
-                this.loadingAwait= true;
+            addPerson(personName) {
+                let person = {name: personName}
+                this.loadingAwait = true;
                 this.savePersonAction(person)
                     .then(res => {
                         this.todoItem.person = res
                         this.loading = false;
                     });
             },
-            deletePerson(){
+            deletePerson() {
                 this.todoForm.person = null;
             },
-            deleteLocation(){
+            deleteLocation() {
                 this.todoForm.location = null;
             },
-        },
-        watch:{
-            dialog(){
-                this.updateForm();
+            pushTodo(todo) {
+                Object.assign(this.todoForm, todo);
+                this.openDialog();
+            },
+
+            clearFrom(){
+                for (const prop of Object.getOwnPropertyNames(this.todoForm)) {
+                    if(typeof this.todoForm[prop] === "object"){
+                        this.todoForm[prop] = null;
+                    }else{
+                        this.todoForm[prop] = '';
+                    }
+
+                }
+                console.log(this.todoForm);
             }
+        },
+        watch: {
+
         }
     }
 </script>
 
 <style scoped>
-    .v-list-item{
+    .v-list-item {
         min-height: 25px;
     }
 </style>
