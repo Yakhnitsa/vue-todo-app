@@ -1,23 +1,7 @@
 <template>
 
     <v-app>
-        <v-navigation-drawer
-                v-model="sidebar"
-                :mini-variant.sync="mini"
-                permanent
-                app
-                clipped>
-            <side-menu>
-                <template v-slot:activator>
-                    <v-btn
-                            icon
-                            @click.stop="mini = !mini"
-                    >
-                        <v-icon>mdi-chevron-left</v-icon>
-                    </v-btn>
-                </template>
-            </side-menu>
-        </v-navigation-drawer>
+        <side-menu></side-menu>
 
         <v-main     v-touch="{
               left: () => this.sidebar = false,
