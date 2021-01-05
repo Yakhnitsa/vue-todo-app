@@ -52,7 +52,7 @@
                 <template v-slot:activator>
                     <v-list-item-title >People</v-list-item-title>
                 </template>
-                <v-list-item class="white" link to="people">
+                <v-list-item class="white" link to="/people">
                     <v-list-item-icon class="mr-0 ml-2">
                         <v-icon dense color="teal" >people</v-icon>
                     </v-list-item-icon>
@@ -63,6 +63,7 @@
                         class="white"
                         v-for="person in people"
                         :key="'p_' + person.id"
+                        :to="'/people/' + person.id"
                         link
                 >
                     <v-list-item-icon class="mr-0 ml-2">
@@ -91,6 +92,7 @@
                         class="white"
                         v-for="location in locations"
                         :key="'l_' + location.id"
+                        :to="'/locations/'+ location.id"
                         link
                 >
                     <v-list-item-icon class="mr-0 ml-2">

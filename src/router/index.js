@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Places from '../views/Places.vue'
+import Locations from '../views/Locations.vue'
 
 Vue.use(VueRouter)
 
@@ -12,13 +12,13 @@ const routes = [
     component: Home
   },
   {
-    path: '/places',
-    name: 'Places',
-    component: Places
+    path: '/locations/:id?',
+    name: 'Locations',
+    component: Locations
   },
 
   {
-    path: '/people',
+    path: '/people/:id?',
     name: 'People',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

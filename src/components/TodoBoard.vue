@@ -16,12 +16,12 @@
             <template v-for="(category,index) in categories" >
                 <v-list-item :key="'cat_' + index">
                     <category-title
-                            :is-active="categoryIsActive(category)"
-                            @toggle-active="activateCategory(category)"
+                            :is-active="categoryIsActive(category.title)"
+                            @toggle-active="activateCategory(category.title)"
                             :category="category.title"></category-title>
                 </v-list-item>
                 <v-list-item
-                        v-show="categoryIsActive(category)"
+                        v-show="categoryIsActive(category.title)"
                         v-for="todo in category.items" :key="todo.id">
                     <todo-item
                             @set-active="setTaskActive"
