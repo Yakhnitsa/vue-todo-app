@@ -3,30 +3,41 @@
     <v-app>
         <v-navigation-drawer
                 v-model="sidebar"
+                :mini-variant.sync="mini"
+                permanent
                 app
                 clipped>
-            <side-menu></side-menu>
+            <side-menu>
+                <template v-slot:activator>
+                    <v-btn
+                            icon
+                            @click.stop="mini = !mini"
+                    >
+                        <v-icon>mdi-chevron-left</v-icon>
+                    </v-btn>
+                </template>
+            </side-menu>
         </v-navigation-drawer>
 
         <v-main     v-touch="{
               left: () => this.sidebar = false,
               right: () => this.sidebar = true, }">
-            <v-btn
-                    @click="sidebar = !sidebar"
-                    class="ml-2 mt-2"
-                    :style="{
-                        zIndex: 1100,
-                        backgroundColor: '#E0F2F1'
-                    }"
-                    absolute
-                    large
-                    elevation="2"
-                    icon
-            >
-                <v-icon>
-                    menu
-                </v-icon>
-            </v-btn>
+<!--            <v-btn-->
+<!--                    @click="sidebar = !sidebar"-->
+<!--                    class="ml-2 mt-2"-->
+<!--                    :style="{-->
+<!--                        zIndex: 1100,-->
+<!--                        backgroundColor: '#E0F2F1'-->
+<!--                    }"-->
+<!--                    absolute-->
+<!--                    large-->
+<!--                    elevation="2"-->
+<!--                    icon-->
+<!--            >-->
+<!--                <v-icon>-->
+<!--                    menu-->
+<!--                </v-icon>-->
+<!--            </v-btn>-->
             <router-view></router-view>
         </v-main>
 <!--        <v-container class="teal lighten-5" fluid>-->
@@ -47,8 +58,8 @@
     export default {
         components: {SideMenu},
         data: () => ({
-            sidebar: true,
-
+            sidebar: false,
+            mini: false
         }),
         mounted() {
             this.$store.dispatch('fetchAllData');

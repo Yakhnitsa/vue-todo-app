@@ -2,17 +2,19 @@
     <v-list
             dense
     >
-        <v-list-item link>
-            <v-list-item-content>
-                <v-list-item-title class="title">
-                    TODO app
-                </v-list-item-title>
-                <v-list-item-subtitle>Just do it!</v-list-item-subtitle>
-            </v-list-item-content>
+        <v-list-item class="px-2">
+            <v-list-item-avatar>
+                <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+            </v-list-item-avatar>
+
+            <v-list-item-title>John Leider</v-list-item-title>
+            <slot name="activator">
+
+            </slot>
         </v-list-item>
         <v-divider class="teal lighten-2"></v-divider>
         <v-list-item
-                class="teal lighten-4"
+                class="teal lighten-5"
                 link>
             <v-list-item-icon>
                 <v-icon>rule</v-icon>
@@ -39,7 +41,7 @@
             </v-list-item-action>
         </v-list-item>
         <v-divider class="teal lighten-2"></v-divider>
-        <v-list-item class="teal lighten-4"
+        <v-list-item class="teal lighten-5"
                 link>
             <v-list-item-icon @click="moveToPeople">
                 <v-icon>supervisor_account</v-icon>
@@ -56,7 +58,7 @@
         </v-list-item>
         <v-divider class="teal lighten-2"></v-divider>
         <v-list-item
-                class="teal lighten-4"
+                class="teal lighten-5"
                 link>
             <v-list-item-icon @click="moveToLocations">
                 <v-icon>place</v-icon>
