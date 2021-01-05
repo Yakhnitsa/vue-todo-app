@@ -79,10 +79,7 @@
       "id": 6,
       "text": "Buy tablet for Yuliya",
       "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
+      "person": null,
       "location": {
         "id": 4,
         "name": "Lavina mall"
@@ -129,10 +126,7 @@
       "id": 10,
       "text": "Buy tickets",
       "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
+      "person": null,
       "location": null,
       "childTask": null
     },
@@ -149,39 +143,6 @@
     },
     {
       "id": 12,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 13,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 14,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 15,
       "text": "Buy tickets",
       "isDone": false,
       "person": {

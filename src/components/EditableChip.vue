@@ -77,7 +77,7 @@
                     return this.inputItem;
                 },
                 set(val){
-                  this.$emit('update:inputItem',val);
+                  this.$emit('update-item',val);
                 }
             },
             hasData(){
@@ -86,7 +86,7 @@
         },
         methods:{
             deleteItem(){
-                this.$emit('delete-item')
+                this.$emit('update-item',null);
             },
             openMenu(){
                 this.showMenu = true;

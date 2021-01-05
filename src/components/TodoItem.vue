@@ -59,8 +59,8 @@
                         <editable-chip ref="personChip"
                                       :input-item.sync="todoItem.person"
                                       :search-items="people"
-                                      @addNewRecord="addPerson"
-                                      @delete-item="deletePerson">
+                                      @addNewRecord="addNewPerson"
+                                      @update-item="updatePerson">
 <!--                            <template #default>{{todoItem.person.name}}</template>-->
                         </editable-chip>
                     </v-list-item>
@@ -71,7 +71,7 @@
                                 :input-item.sync="todoItem.location"
                                 :search-items="locations"
                                 @addNewRecord="addNewLocation"
-                                @delete-item="deleteLocation">
+                                @update-item="updateLocation">
                         </editable-chip>
                     </v-list-item>
                     <v-list-item class="px-0">
@@ -153,8 +153,9 @@
                         this.todoItem.location = res
                         this.loadingAwait = false;
                     });
+                this.saveTodo();
             },
-            addPerson(personName){
+            addNewPerson(personName){
                 let person = {name:personName}
                 this.loadingAwait= true;
                 this.savePersonAction(person)
@@ -162,38 +163,34 @@
                         this.todoItem.person = res
                         this.loadingAwait = false;
                     });
+                this.saveTodo();
             },
 
             addChildTask(){
 
             },
-            deletePerson(){
-                this.todoItem.person = null;
+            updatePerson(person){
+                this.todoItem.person = person;
+                this.saveTodo();
             },
-            deleteLocation(){
-                this.todoItem.location = null;
+            updateLocation(location){
+                this.todoItem.location = location;
+                this.saveTodo();
             },
-            deleteChildTask(){
 
-            },
-            editLocation(){
-
-            },
-            savePerson(){
-
-            },
-            editChildTask(){
-
-            },
+            saveTodo(){
+                this.loadingAwait = true
+                this.saveTodoAction(this.todoItem)
+                    .finally(()=> this.loadingAwait = false);
+            }
 
         },
         watch:{
             todoItem:{
                 deep: true,
                 handler(){
-                    this.loadingAwait = true
-                    this.saveTodoAction(this.todoItem)
-                        .finally(()=> this.loadingAwait = false);
+                    console.log(this.todoItem);
+                    // this.saveTodo();
                 }
             }
         },
