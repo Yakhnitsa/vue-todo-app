@@ -1,7 +1,6 @@
 <template>
     <v-card
-            class="mx-auto"
-            width="500"
+            min-width="500"
             height="100%">
         <v-list v-if="isLoading">
             <v-list-item class="d-block" v-for="n in 5" :key="n">
@@ -18,6 +17,7 @@
                     <category-title
                             :is-active="categoryIsActive(category.title)"
                             @toggle-active="activateCategory(category.title)"
+                            @add-with-category="addWithCategory"
                             :category="category.title"></category-title>
                 </v-list-item>
                 <v-list-item
@@ -70,6 +70,9 @@
                 }else{
                     this.activeCategories.splice(index,1);
                 }
+            },
+            addWithCategory(category){
+                this.$emit('add-with-category',category);
             }
 
         },

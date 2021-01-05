@@ -1,8 +1,22 @@
 <template>
     <v-container fluid>
         <v-row>
-            <todo-board v-if="singleCategory.length > 0" :categories="singleCategory" :is-loading="false"></todo-board>
-            <todo-board v-else :categories="allCategories" :is-loading="false"></todo-board>
+            <todo-edit-dialog ref="todoEditDialog">
+                <template v-slot:activator>
+<!--                    Add void div to hide activator-->
+                    <div></div>
+                </template>
+            </todo-edit-dialog>
+            <todo-quick-add class="ml-5 my-2"
+                  @edit-todo="openEditDialog"></todo-quick-add>
+        </v-row>
+        <v-row>
+            <todo-board class="ml-5"
+                        :categories="singleCategory.length > 0 ? singleCategory : allCategories"
+                        @add-with-category="addWithCategory"
+                        :is-loading="false">
+
+            </todo-board>
         </v-row>
     </v-container>
 </template>
@@ -11,10 +25,12 @@
     import {mapGetters} from "vuex";
     import {reduceToCategories} from '../plugins/arrayUtils'
     import TodoBoard from "@/components/TodoBoard";
+    import TodoQuickAdd from "@/components/TodoQuickAdd";
+    import TodoEditDialog from "@/components/TodoEditDialog";
 
     export default {
         name: "People",
-        components: {TodoBoard},
+        components: {TodoEditDialog, TodoQuickAdd, TodoBoard},
 
         computed:{
             ...mapGetters({
@@ -31,6 +47,16 @@
             },
             allCategories(){
                 return reduceToCategories(this.allTodos,'person');
+            }
+        },
+        methods:{
+
+            openEditDialog(todo){
+                this.$refs.todoEditDialog.pushTodo(todo);
+            },
+            addWithCategory(category){
+                const prototype = {person: category};
+                this.openEditDialog(prototype);
             }
         },
         mounted(){

@@ -177,7 +177,6 @@
                     }
 
                 }
-                console.log(this.todoForm);
             }
         },
         watch: {

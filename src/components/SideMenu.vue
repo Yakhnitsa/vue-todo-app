@@ -25,23 +25,24 @@
             <v-divider class="teal lighten-2"></v-divider>
             <v-list-item
                     class="teal lighten-5"
+                    to="/"
                     link>
                 <v-list-item-icon>
                     <v-icon>rule</v-icon>
                 </v-list-item-icon>
                 <v-list-item-title>All tasks</v-list-item-title>
-                <v-list-item-action>
-                    <todo-edit-dialog>
-                        <template v-slot:activator="props">
-                            <v-icon v-bind="props.attrs"
-                                    @click="props.activate({})" color="grey darken-1">
-                                add_task
-                            </v-icon>
-                        </template>
+<!--                <v-list-item-action>-->
+<!--                    <todo-edit-dialog>-->
+<!--                        <template v-slot:activator="props">-->
+<!--                            <v-icon v-bind="props.attrs"-->
+<!--                                    @click="props.activate({})" color="grey darken-1">-->
+<!--                                add_task-->
+<!--                            </v-icon>-->
+<!--                        </template>-->
 
-                    </todo-edit-dialog>
+<!--                    </todo-edit-dialog>-->
 
-                </v-list-item-action>
+<!--                </v-list-item-action>-->
             </v-list-item>
             <v-divider class="teal lighten-2"></v-divider>
             <v-list-group
@@ -146,13 +147,13 @@
 
 <script>
     import {mapGetters} from 'vuex';
-    import TodoEditDialog from "@/components/TodoEditDialog";
+    // import TodoEditDialog from "@/components/TodoEditDialog";
     export default {
         name: "SideMenu",
-        components: {TodoEditDialog},
+        components: {},
         data: () => ({
             sidebar: true,
-            mini: true,
+            mini: false,
             peopleMenu: false,
             locationsMenu: false,
             headTasks: true,

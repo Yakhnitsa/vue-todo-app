@@ -20,7 +20,7 @@
                                 {{category ? category.name : 'No category'}}</v-list-item-title>
                         </v-list-item-content>
                         <v-list-item-action class="d-inline-block my-0 pa-0">
-                            <v-btn icon>
+                            <v-btn icon @click="addWithCategory">
                                 <v-icon color="grey darken-1">add</v-icon>
                             </v-btn>
                         </v-list-item-action>
@@ -44,6 +44,9 @@
         methods:{
             toggleTodos(){
                 this.$emit('toggle-active', this.category);
+            },
+            addWithCategory(){
+                this.$emit('add-with-category',this.category);
             }
         }
     }
