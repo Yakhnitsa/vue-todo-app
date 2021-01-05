@@ -189,8 +189,7 @@
             todoItem:{
                 deep: true,
                 handler(){
-                    console.log(this.todoItem);
-                    // this.saveTodo();
+
                 }
             }
         },

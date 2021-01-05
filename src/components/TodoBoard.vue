@@ -15,9 +15,14 @@
         <v-list v-else>
             <template v-for="(category,index) in categories" >
                 <v-list-item :key="'cat_' + index">
-                    <category-title :category="category.title"></category-title>
+                    <category-title
+                            :is-active="categoryIsActive(category)"
+                            @toggle-active="activateCategory(category)"
+                            :category="category.title"></category-title>
                 </v-list-item>
-                <v-list-item v-for="todo in category.items" :key="todo.id">
+                <v-list-item
+                        v-show="categoryIsActive(category)"
+                        v-for="todo in category.items" :key="todo.id">
                     <todo-item
                             @set-active="setTaskActive"
                             :is-active="todo === activeTask"
@@ -25,14 +30,12 @@
                     </todo-item>
                 </v-list-item>
             </template>
-
         </v-list>
     </v-card>
 </template>
 
 <script>
     import TodoItem from "@/components/TodoItem";
-    // import TestButton from "@/components/TestButton";
     import {mapGetters} from 'vuex';
     import CategoryTitle from "@/components/CategoryTitle";
 
@@ -45,16 +48,30 @@
         },
         data: () => ({
             activeTask:null,
+            activeCategories:[],
         }),
         computed:{
             ...mapGetters({
                 todoItems: 'getAllTodos'
             }),
+
         },
         methods:{
             setTaskActive(todo){
                 this.activeTask = todo;
+            },
+            categoryIsActive(category){
+                return this.activeCategories.findIndex(cat => cat === category) !== -1;
+            },
+            activateCategory(category){
+                const index = this.activeCategories.findIndex(cat => cat === category);
+                if(index === -1){
+                    this.activeCategories.push(category);
+                }else{
+                    this.activeCategories.splice(index,1);
+                }
             }
+
         },
         mounted(){
 

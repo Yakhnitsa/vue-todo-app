@@ -15,7 +15,10 @@
       "id": 1,
       "text": "Pack all my staff",
       "isDone": false,
-      "person": null,
+      "person": {
+        "id": 4,
+        "name": "Prostitute"
+      },
       "location": {
         "id": 0,
         "name": "Home"
@@ -68,7 +71,10 @@
       "id": 5,
       "text": "Buy tablet for Yuliya",
       "isDone": false,
-      "person": null,
+      "person": {
+        "id": 2,
+        "name": "Mom"
+      },
       "location": {
         "id": 2,
         "name": "Gas station"
