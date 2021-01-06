@@ -17,7 +17,10 @@
                                 <v-icon color="blue-grey darken-1">
                                     {{isActive ? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
                                 </v-icon>
-                                {{category ? category.name : 'No category'}}</v-list-item-title>
+                                <slot>
+                                    {{category ? category.name : 'No category'}}
+                                </slot>
+                            </v-list-item-title>
                         </v-list-item-content>
                         <v-list-item-action class="d-inline-block my-0 pa-0">
                             <v-btn icon @click="addWithCategory">

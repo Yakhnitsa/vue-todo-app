@@ -15,7 +15,6 @@
                         :categories="singleCategory.length > 0 ? singleCategory : allCategories"
                         @add-with-category="addWithCategory"
                         :is-loading="false">
-
             </todo-board>
         </v-row>
     </v-container>

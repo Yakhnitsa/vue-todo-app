@@ -11,6 +11,14 @@
                       @edit-todo="openEditDialog"></todo-quick-add>
     </v-row>
     <v-row>
+      <todo-board class="ml-5"
+                  :categories="allTodosWithCategory"
+                  @add-with-category="pushTodo({})"
+                  :is-loading="false">
+
+      </todo-board>
+    </v-row>
+    <v-row>
 
     </v-row>
   </v-container>
@@ -21,20 +29,25 @@
 import {mapGetters} from 'vuex';
 import TodoEditDialog from "../components/TodoEditDialog";
 import TodoQuickAdd from "../components/TodoQuickAdd";
+import TodoBoard from "@/components/TodoBoard";
+
 export default {
   name: 'Home',
   components: {
     TodoEditDialog,
-    TodoQuickAdd
+    TodoQuickAdd,
+    TodoBoard
   },
   computed:{
     ...mapGetters({
       allTodos: 'getAllTodos'
-    })
+    }),
+    allTodosWithCategory(){
+      return [{category: {id:null, name: 'All tasks'}, items: this.allTodos}]
+    }
   },
   methods:{
     pushTodo(val){
-      console.log(val);
       val.click();
     },
     openEditDialog(todo){

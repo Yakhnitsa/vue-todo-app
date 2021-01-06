@@ -18,7 +18,24 @@
                             :is-active="categoryIsActive(cat.category)"
                             @toggle-active="activateCategory(cat.category)"
                             @add-with-category="addWithCategory"
-                            :category="cat.category"></category-title>
+                            :todo-count="cat.items.length"
+                            :category="cat.category">
+                        <template v-slot:default>
+                            <v-badge
+                                    color="teal lighten-1"
+                                    dark
+                                    inline
+                                    left
+                                    class="mt-0"
+                                    :content="cat.items.length"
+                                    :value="cat.items.length > 0"
+
+                            >
+                                {{cat.category ? cat.category.name : 'Other'}}
+
+                            </v-badge>
+                        </template>
+                    </category-title>
                 </v-list-item>
                 <v-list-item
                         v-show="categoryIsActive(cat.category)"
