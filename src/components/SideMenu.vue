@@ -62,15 +62,15 @@
                 <v-divider></v-divider>
                 <v-list-item
                         class="white"
-                        v-for="person in people"
-                        :key="'p_' + person.id"
-                        :to="'/people/' + person.id"
+                        v-for="(group,index) in peopleGroups"
+                        :key="'p_' + index"
+                        @click="moveToPerson(group.category)"
                         link
                 >
                     <v-list-item-icon class="mr-0 ml-2">
                         <v-icon small color="teal">person</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-title v-text="person.name"></v-list-item-title>
+                    <v-list-item-title v-text="group.category ? group.category.name : 'No person'"></v-list-item-title>
                 </v-list-item>
             </v-list-group>
             <v-divider class="teal lighten-2"></v-divider>
@@ -91,53 +91,19 @@
                 <v-divider></v-divider>
                 <v-list-item
                         class="white"
-                        v-for="location in locations"
-                        :key="'l_' + location.id"
-                        :to="'/locations/'+ location.id"
+                        v-for="(group,index) in locationGroups"
+                        :key="'l_' + index"
+                        @click="moveToLocation(group.category)"
                         link
                 >
                     <v-list-item-icon class="mr-0 ml-2">
                         <v-icon small color="teal">gps_fixed</v-icon>
                     </v-list-item-icon>
-                    <v-list-item-title v-text="location.name"></v-list-item-title>
+                    <v-list-item-title v-text="group.category ? group.category.name : 'No place'"></v-list-item-title>
                 </v-list-item>
             </v-list-group>
 
             <v-divider class="teal lighten-2"></v-divider>
-
-            <!--        <v-divider class="teal lighten-2"></v-divider>-->
-            <!--        <v-list-item class="teal lighten-5"-->
-            <!--                link>-->
-            <!--            <v-list-item-icon @click="moveToPeople">-->
-            <!--                <v-icon>supervisor_account</v-icon>-->
-            <!--            </v-list-item-icon>-->
-            <!--            <v-list-item-title @click="moveToPeople">People</v-list-item-title>-->
-            <!--            <v-list-item-action>-->
-            <!--                <v-icon @click="peopleMenu = !peopleMenu" color="grey darken-1">-->
-            <!--                    {{peopleMenu ? 'expand_more':'navigate_next'}}-->
-            <!--                </v-icon>-->
-            <!--            </v-list-item-action>-->
-            <!--        </v-list-item>-->
-            <!--        <v-list-item v-show=peopleMenu v-for="person in people" :key="person.id" class="pl-8" link>-->
-            <!--            <v-list-item-title @click="moveToPeople">{{person.name}}</v-list-item-title>-->
-            <!--        </v-list-item>-->
-            <!--        <v-divider class="teal lighten-2"></v-divider>-->
-            <!--        <v-list-item-->
-            <!--                class="teal lighten-5"-->
-            <!--                link>-->
-            <!--            <v-list-item-icon @click="moveToLocations">-->
-            <!--                <v-icon>place</v-icon>-->
-            <!--            </v-list-item-icon>-->
-            <!--            <v-list-item-title @click="moveToLocations">Locations</v-list-item-title>-->
-            <!--            <v-list-item-action>-->
-            <!--                <v-icon @click="locationsMenu = !locationsMenu" color="grey darken-1">-->
-            <!--                    {{locationsMenu ? 'expand_more':'navigate_next'}}-->
-            <!--                </v-icon>-->
-            <!--            </v-list-item-action>-->
-            <!--        </v-list-item>-->
-            <!--        <v-list-item v-show=locationsMenu v-for="location in locations" :key="location.id" class="pl-8 " link>-->
-            <!--            <v-list-item-title @click="moveToPeople">{{location.name}}</v-list-item-title>-->
-            <!--        </v-list-item>-->
         </v-list>
 
 
@@ -161,15 +127,26 @@
         computed:{
             ...mapGetters({
                 people: 'getAllPeople',
-                locations:'getAllLocations'
+                locations:'getAllLocations',
+                locationGroups:'getTodosGroupByLocation',
+                peopleGroups: 'getTodosGroupByPerson'
             })
         },
         methods:{
-            moveToPeople() {
-                this.$router.push('people');
+            moveToPerson(category) {
+                if(category && category.id !== undefined){
+                    this.$router.push('/people/' + category.id);
+                }else{
+                    this.$router.push('/people/no_person');
+                }
+
             },
-            moveToLocations(){
-                this.$router.push('locations');
+            moveToLocation(category){
+                if(category && category.id !== undefined){
+                    this.$router.push('/locations/' + category.id);
+                }else{
+                    this.$router.push('/locations/no_location');
+                }
             },
             addTodo(){
 

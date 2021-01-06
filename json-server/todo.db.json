@@ -1,210 +1,67 @@
 {
   "todos": [
     {
-      "id": 0,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
       "id": 1,
       "text": "Pack all my staff",
       "isDone": false,
       "person": {
-        "id": 4,
-        "name": "Prostitute"
-      },
-      "location": {
         "id": 0,
-        "name": "Home"
+        "name": "Wife"
       },
+      "location": null,
       "childTask": null
     },
     {
       "id": 2,
-      "text": "Buy presents for nephews",
-      "isDone": false,
-      "person": {
-        "id": 3,
-        "name": "Ann"
-      },
-      "location": {
-        "id": 4,
-        "name": "Lavina mall"
-      },
-      "childTask": null
-    },
-    {
-      "id": 3,
-      "text": "Spell list for a vacation",
-      "isDone": false,
+      "text": "Отпроситься пораньше с работы",
+      "isDone": "",
       "person": {
         "id": 1,
         "name": "Boss"
       },
-      "location": {
-        "id": 1,
-        "name": "Work"
+      "location": null,
+      "childTask": null
+    },
+    {
+      "id": 3,
+      "text": "Приготовить лазанью",
+      "isDone": "",
+      "person": {
+        "id": 2,
+        "name": "Mom"
       },
+      "location": null,
       "childTask": null
     },
     {
       "id": 4,
-      "text": "Buy tablet for Yuliya",
-      "isDone": false,
+      "text": "Полить бычка травяничка",
+      "isDone": "",
       "person": {
-        "id": 0,
-        "name": "Wife"
+        "id": 3,
+        "name": "Ann"
       },
-      "location": {
-        "id": 4,
-        "name": "Lavina mall"
-      },
+      "location": null,
       "childTask": null
     },
     {
       "id": 5,
-      "text": "Buy tablet for Yuliya",
-      "isDone": false,
+      "text": "Поздравить с рождеством",
+      "isDone": "",
       "person": {
-        "id": 2,
-        "name": "Mom"
+        "id": 4,
+        "name": "Prostitute"
       },
-      "location": {
-        "id": 2,
-        "name": "Gas station"
-      },
+      "location": null,
       "childTask": null
     },
     {
       "id": 6,
-      "text": "Buy tablet for Yuliya",
-      "isDone": false,
-      "person": null,
-      "location": {
-        "id": 4,
-        "name": "Lavina mall"
-      },
-      "childTask": null
-    },
-    {
-      "id": 7,
-      "text": "Clean all the house",
-      "isDone": false,
+      "text": "Устранить засор в раковине",
+      "isDone": "",
       "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": {
-        "id": 0,
-        "name": "Home"
-      },
-      "childTask": null
-    },
-    {
-      "id": 8,
-      "text": "Buy tablet for Yuliya",
-      "isDone": false,
-      "person": null,
-      "location": {
-        "id": 4,
-        "name": "Lavina mall"
-      },
-      "childTask": null
-    },
-    {
-      "id": 9,
-      "text": "Wash the dishes",
-      "isDone": false,
-      "person": null,
-      "location": {
-        "id": 0,
-        "name": "Home"
-      },
-      "childTask": null
-    },
-    {
-      "id": 10,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": null,
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 11,
-      "text": "Take tablet from Rozetka",
-      "isDone": false,
-      "person": null,
-      "location": {
-        "name": "Rozetka market",
-        "id": 6
-      },
-      "childTask": null
-    },
-    {
-      "id": 12,
-      "text": "Buy tickets",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 13,
-      "text": "New test TODO",
-      "isDone": false,
-      "person": null,
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 14,
-      "text": "new TODO",
-      "isDone": false,
-      "person": null,
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 15,
-      "text": "Test TODO item",
-      "isDone": false,
-      "person": null,
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 16,
-      "text": "Test element",
-      "isDone": false,
-      "person": null,
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 17,
-      "text": "Something new",
-      "isDone": false,
-      "person": null,
-      "location": null,
-      "childTask": null
-    },
-    {
-      "id": 18,
-      "text": "Cook new receip of asian quisine",
-      "isDone": false,
-      "person": {
-        "id": 2,
-        "name": "Mom"
+        "id": 5,
+        "name": "Plumber"
       },
       "location": null,
       "childTask": null

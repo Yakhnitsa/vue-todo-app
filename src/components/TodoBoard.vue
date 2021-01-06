@@ -12,17 +12,17 @@
         </v-list>
 
         <v-list v-else>
-            <template v-for="(category,index) in categories" >
+            <template v-for="(cat,index) in categories" >
                 <v-list-item :key="'cat_' + index">
                     <category-title
-                            :is-active="categoryIsActive(category.title)"
-                            @toggle-active="activateCategory(category.title)"
+                            :is-active="categoryIsActive(cat.category)"
+                            @toggle-active="activateCategory(cat.category)"
                             @add-with-category="addWithCategory"
-                            :category="category.title"></category-title>
+                            :category="cat.category"></category-title>
                 </v-list-item>
                 <v-list-item
-                        v-show="categoryIsActive(category.title)"
-                        v-for="todo in category.items" :key="todo.id">
+                        v-show="categoryIsActive(cat.category)"
+                        v-for="todo in cat.items" :key="todo.id">
                     <todo-item
                             @set-active="setTaskActive"
                             :is-active="todo === activeTask"

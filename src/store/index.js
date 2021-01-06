@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import api from '../api/jsonServerApi';
+import {reduceToSuggestedCategories} from '../plugins/arrayUtils'
 
 import {addOrReplace} from '../plugins/arrayUtils';
 
@@ -25,6 +26,16 @@ export default new Vuex.Store({
         },
         getAllPeople: state => {
             return state.people;
+        },
+        getTodosGroupByPerson:((state, getters) => {
+            const categories = [...getters.getAllPeople];
+            categories.push(null);
+            return reduceToSuggestedCategories(getters.getAllTodos,categories,'person');
+        }),
+        getTodosGroupByLocation:(state,getters) =>{
+            const categories = [...getters.getAllLocations];
+            categories.push(null);
+            return reduceToSuggestedCategories(getters.getAllTodos,categories,'location');
         },
         getTestItems: state=>{
             return state.testItems;

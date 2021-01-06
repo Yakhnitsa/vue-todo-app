@@ -1,16 +1,18 @@
 <template>
   <v-container fluid>
-    <todo-edit-dialog>
-      <template v-slot:activator="props">
-        <v-btn
-                color="primary"
-                v-bind="props.attrs"
-                @click="props.activate({})"
-        >
-          +
-        </v-btn>
-      </template>
-    </todo-edit-dialog>
+    <v-row>
+      <todo-edit-dialog ref="todoEditDialog">
+        <template v-slot:activator>
+          <!--                    Add void div to hide activator-->
+          <div></div>
+        </template>
+      </todo-edit-dialog>
+      <todo-quick-add class="ml-5 my-2"
+                      @edit-todo="openEditDialog"></todo-quick-add>
+    </v-row>
+    <v-row>
+
+    </v-row>
   </v-container>
 </template>
 
@@ -18,10 +20,12 @@
 // @ is an alias to /src
 import {mapGetters} from 'vuex';
 import TodoEditDialog from "../components/TodoEditDialog";
+import TodoQuickAdd from "../components/TodoQuickAdd";
 export default {
   name: 'Home',
   components: {
-    TodoEditDialog
+    TodoEditDialog,
+    TodoQuickAdd
   },
   computed:{
     ...mapGetters({
@@ -32,7 +36,10 @@ export default {
     pushTodo(val){
       console.log(val);
       val.click();
-    }
+    },
+    openEditDialog(todo){
+      this.$refs.todoEditDialog.pushTodo(todo);
+    },
   }
 
 }

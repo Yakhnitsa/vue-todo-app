@@ -23,7 +23,7 @@
 
 <script>
     import {mapGetters} from "vuex";
-    import {reduceToCategories} from '../plugins/arrayUtils'
+    // import {reduceToCategories} from '../plugins/arrayUtils'
     import TodoBoard from "@/components/TodoBoard";
     import TodoQuickAdd from "@/components/TodoQuickAdd";
     import TodoEditDialog from "@/components/TodoEditDialog";
@@ -35,22 +35,21 @@
         computed:{
             ...mapGetters({
                 allTodos: 'getAllTodos',
-                people:'getAllPeople'
+                people:'getAllPeople',
+                allCategories: 'getTodosGroupByPerson'
             }),
             singleCategory(){
                 const id = this.$route.params.id;
-                console.log(id);
+                if(id === 'no_person'){
+                    return this.allCategories.filter(cat => cat.category === null)
+                }
                 return this.allCategories
                     .filter(cat => {
-                        return cat.title ? cat.title.id == id : false;
+                        return cat.category ? cat.category.id == id : false;
                     });
             },
-            allCategories(){
-                return reduceToCategories(this.allTodos,'person');
-            }
         },
         methods:{
-
             openEditDialog(todo){
                 this.$refs.todoEditDialog.pushTodo(todo);
             },
@@ -60,8 +59,6 @@
             }
         },
         mounted(){
-            // const result = this.$store.dispatch('fetchAllData');
-            // result.finally(() => console.log('data fetched'))
         }
     }
 </script>
