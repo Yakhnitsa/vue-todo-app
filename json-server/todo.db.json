@@ -1,17 +1,6 @@
 {
   "todos": [
     {
-      "id": 1,
-      "text": "Pack all my staff",
-      "isDone": false,
-      "person": {
-        "id": 0,
-        "name": "Wife"
-      },
-      "location": null,
-      "childTask": null
-    },
-    {
       "id": 2,
       "text": "Отпроситься пораньше с работы",
       "isDone": "",

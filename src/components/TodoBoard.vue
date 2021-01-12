@@ -41,6 +41,7 @@
                         v-show="categoryIsActive(cat.category)"
                         v-for="todo in cat.items" :key="todo.id">
                     <todo-item
+                            @edit-todo="editTodo(todo)"
                             @set-active="setTaskActive"
                             :is-active="todo === activeTask"
                             :todo-item="todo">
@@ -90,6 +91,9 @@
             },
             addWithCategory(category){
                 this.$emit('add-with-category',category);
+            },
+            editTodo(todo){
+                this.$emit('edit-todo',todo);
             }
 
         },

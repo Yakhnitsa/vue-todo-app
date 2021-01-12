@@ -13,7 +13,8 @@
     <v-row>
       <todo-board class="ml-5"
                   :categories="allTodosWithCategory"
-                  @add-with-category="pushTodo({})"
+                  @edit-todo="openEditDialog"
+                  @add-with-category="openEditDialog({})"
                   :is-loading="false">
 
       </todo-board>
@@ -47,10 +48,9 @@ export default {
     }
   },
   methods:{
-    pushTodo(val){
-      val.click();
-    },
+
     openEditDialog(todo){
+      console.log(todo);
       this.$refs.todoEditDialog.pushTodo(todo);
     },
   }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import api from '../api/jsonServerApi';
-import {reduceToSuggestedCategories} from '../plugins/arrayUtils'
+import {deleteIfExist, reduceToSuggestedCategories} from '../plugins/arrayUtils'
 
 import {addOrReplace} from '../plugins/arrayUtils';
 
@@ -66,6 +66,9 @@ export default new Vuex.Store({
         addTodoMutation(state,todo){
             addOrReplace(state.todos,todo);
         },
+        deleteTodoMutation(state,todo){
+            deleteIfExist(state.todos,todo);
+        },
         addTestItem(state,item){
             state.testItems.push(item);
         }
@@ -86,6 +89,13 @@ export default new Vuex.Store({
             const savedTodo = resp.data;
             commit('addTodoMutation',savedTodo);
             return savedTodo;
+        },
+        async deleteTodoAction({commit}, todo){
+            const resp = await api.deleteTodo(todo);
+            if(resp.status== 200){
+                commit('deleteTodoMutation',todo);
+            }
+
         },
         async fetchPeopleAction({commit}){
             const resp = await api.fetchPeople();

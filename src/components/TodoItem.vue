@@ -44,9 +44,46 @@
                         ></v-divider>
 
                         <v-list-item-action class="d-inline-block my-0 pa-0">
-                            <v-btn icon>
-                                <v-icon color="grey lighten-1">more_vert</v-icon>
-                            </v-btn>
+<!--                            <v-btn icon>-->
+<!--                                <v-icon color="grey lighten-1">more_vert</v-icon>-->
+<!--                            </v-btn>-->
+                            <v-menu offset-y>
+                                <template v-slot:activator="{ on, attrs }">
+                                    <v-btn icon
+                                            color="primary"
+                                            dark
+                                            v-bind="attrs"
+                                            v-on="on"
+                                    >
+                                        <v-icon color="grey lighten-1">more_vert</v-icon>
+                                    </v-btn>
+                                </template>
+                                <v-list dense>
+                                    <v-list-item-group
+                                            color="primary"
+                                    >
+<!--                                        <v-subheader>todo menu</v-subheader>-->
+                                        <v-list-item @click="editTodo" >
+                                            <v-list-item-icon class="my-1 mr-2">
+                                                <v-icon small>edit</v-icon>
+                                            </v-list-item-icon>
+                                            <v-list-item-content>
+                                                <v-list-item-title>edit todo</v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                        <v-list-item @click="deleteTodo">
+                                            <v-list-item-icon class="my-1 mr-2">
+                                                <v-icon small>delete</v-icon>
+                                            </v-list-item-icon>
+                                            <v-list-item-content>
+                                                <v-list-item-title>delete todo</v-list-item-title>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-list-item-group>
+                                </v-list>
+                            </v-menu>
+
+
                         </v-list-item-action>
 
                     </v-list-item>
@@ -131,7 +168,7 @@
             ...mapMutations({
 
             }),
-            ...mapActions(['saveTodoAction','savePersonAction','saveLocationAction']),
+            ...mapActions(['saveTodoAction','savePersonAction','saveLocationAction','deleteTodoAction']),
             activateMenu(){
                 this.isActive ? this.$emit('set-active', null)
                     : this.$emit('set-active',this.todoItem);
@@ -182,6 +219,12 @@
                 this.loadingAwait = true
                 this.saveTodoAction(this.todoItem)
                     .finally(()=> this.loadingAwait = false);
+            },
+            editTodo(){
+                this.$emit('edit-todo');
+            },
+            deleteTodo(){
+                this.deleteTodoAction(this.todoItem);
             }
 
         },

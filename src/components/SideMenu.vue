@@ -11,7 +11,7 @@
         >
             <v-list-item class="px-2">
                 <v-list-item-avatar>
-                    <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+                    <v-img src="@/assets/img/todo_icon_alt.png"/>
                 </v-list-item-avatar>
 
                 <v-list-item-title>TODO APP</v-list-item-title>
@@ -180,11 +180,5 @@
 </script>
 
 <style scoped>
-    .v-badge__badge {
-        border-radius: 5px;
-        color: #fff;
-        font-size: 10px;
-        height: 17px;
-    }
 
 </style>
