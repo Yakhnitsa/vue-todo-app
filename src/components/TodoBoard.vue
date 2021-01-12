@@ -67,6 +67,8 @@
         data: () => ({
             activeTask:null,
             activeCategories:[],
+            displayCompleted: true
+
         }),
         computed:{
             ...mapGetters({
@@ -98,6 +100,19 @@
 
         },
         mounted(){
+
+        },
+        filters:{
+            filterCompleted(tasks){
+                if(this.displayCompleted){
+                    return tasks;
+
+                }
+                return tasks.filter(todo => todo.completed);
+            },
+            sortCompleted(tasks){
+                return [...tasks].sort((a,b) => a.isDone - b.isDone);
+            }
 
         }
     }

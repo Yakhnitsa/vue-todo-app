@@ -3,7 +3,7 @@
     {
       "id": 2,
       "text": "Отпроситься пораньше с работы",
-      "isDone": "",
+      "isDone": true,
       "person": {
         "id": 1,
         "name": "Boss"
@@ -14,7 +14,7 @@
     {
       "id": 3,
       "text": "Приготовить лазанью",
-      "isDone": "",
+      "isDone": true,
       "person": {
         "id": 2,
         "name": "Mom"

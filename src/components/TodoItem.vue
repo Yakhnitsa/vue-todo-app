@@ -15,16 +15,21 @@
                         <v-list-item-action class="my-0 mr-3">
                             <v-checkbox
                                     hide-details
+                                    v-model="isDone"
                                     class="shrink mr-2 mt-0"
                             ></v-checkbox>
                         </v-list-item-action>
                         <v-list-item-content class="pa-1">
+                            <v-list-item-title
 
-                            <v-list-item-title @click="activateMenu">
+                                    @click="activateMenu">
                                 <v-icon color="blue-grey darken-1">
                                     {{isActive ? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
                                 </v-icon>
-                                {{todoItem.text}}</v-list-item-title>
+                                <span :class="{'text--secondary text-decoration-line-through' : isDone}">
+                                    {{todoItem.text}}
+                                </span>
+                                </v-list-item-title>
                         </v-list-item-content>
 
                         <v-list-item-action class="d-inline-block my-1 mr-2">
@@ -151,6 +156,15 @@
                 people: 'getAllPeople',
                 locations: 'getAllLocations'
             }),
+            isDone:{
+                get(){
+                    return this.todoItem.isDone;
+                },
+                set(val){
+                    this.todoItem.isDone = val;
+                    this.saveTodo();
+                }
+            },
             hasLocation(){
                 return this.todoItem.location;
             },
@@ -232,7 +246,6 @@
             todoItem:{
                 deep: true,
                 handler(){
-
                 }
             }
         },
