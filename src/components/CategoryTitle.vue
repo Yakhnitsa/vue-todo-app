@@ -15,7 +15,7 @@
                         <v-list-item-content @click="toggleTodos" class="pa-1">
                             <v-list-item-title>
                                 <v-icon color="blue-grey darken-1">
-                                    {{isActive ? 'keyboard_arrow_down': 'keyboard_arrow_right'}}
+                                    {{isHidden ? 'keyboard_arrow_right' : 'keyboard_arrow_down' }}
                                 </v-icon>
                                 <slot>
                                     {{category ? category.name : 'No category'}}
@@ -39,7 +39,7 @@
 <script>
     export default {
         name: "CategoryTitle",
-        props:['category','todo-count','category-icon','is-active'],
+        props:['category','todo-count','category-icon','is-hidden'],
         data: () => ({
         }),
         computed:{

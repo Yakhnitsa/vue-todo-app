@@ -15,8 +15,8 @@
             <template v-for="(cat,index) in categories" >
                 <v-list-item :key="'cat_' + index">
                     <category-title
-                            :is-active="categoryIsActive(cat.category)"
-                            @toggle-active="activateCategory(cat.category)"
+                            :is-hidden="!categoryIsHidden(cat.category)"
+                            @toggle-active="hideCategory(cat.category)"
                             @add-with-category="addWithCategory"
                             :todo-count="cat.items.length"
                             :category="cat.category">
@@ -38,8 +38,8 @@
                     </category-title>
                 </v-list-item>
                 <v-list-item
-                        v-show="categoryIsActive(cat.category)"
-                        v-for="todo in cat.items" :key="todo.id">
+                        v-show="categoryIsHidden(cat.category)"
+                        v-for="todo in sortCompleted(cat.items)" :key="todo.id">
                     <todo-item
                             @edit-todo="editTodo(todo)"
                             @set-active="setTaskActive"
@@ -80,10 +80,16 @@
             setTaskActive(todo){
                 this.activeTask = todo;
             },
-            categoryIsActive(category){
-                return this.activeCategories.findIndex(cat => cat === category) !== -1;
+            categoryIsHidden(category){
+                let index = -1;
+                if(category)
+                    index = this.activeCategories.findIndex(cat => cat.id === category.id);
+                else {
+                    index = this.activeCategories.findIndex(cat => cat === category);
+                }
+                return index === -1;
             },
-            activateCategory(category){
+            hideCategory(category){
                 const index = this.activeCategories.findIndex(cat => cat === category);
                 if(index === -1){
                     this.activeCategories.push(category);
@@ -96,23 +102,22 @@
             },
             editTodo(todo){
                 this.$emit('edit-todo',todo);
-            }
-
-        },
-        mounted(){
-
-        },
-        filters:{
+            },
             filterCompleted(tasks){
                 if(this.displayCompleted){
                     return tasks;
-
                 }
                 return tasks.filter(todo => todo.completed);
             },
             sortCompleted(tasks){
                 return [...tasks].sort((a,b) => a.isDone - b.isDone);
             }
+
+        },
+        mounted(){
+        },
+        filters:{
+
 
         }
     }

@@ -25,7 +25,7 @@
     {
       "id": 4,
       "text": "Полить бычка травяничка",
-      "isDone": "",
+      "isDone": true,
       "person": {
         "id": 3,
         "name": "Ann"
@@ -36,7 +36,7 @@
     {
       "id": 5,
       "text": "Поздравить с рождеством",
-      "isDone": "",
+      "isDone": false,
       "person": {
         "id": 4,
         "name": "Prostitute"
@@ -47,7 +47,7 @@
     {
       "id": 6,
       "text": "Устранить засор в раковине",
-      "isDone": "",
+      "isDone": true,
       "person": {
         "id": 5,
         "name": "Plumber"
